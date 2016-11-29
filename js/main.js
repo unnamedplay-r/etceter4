@@ -1,3 +1,12 @@
+/*
+ * 
+ * Considering following the idiomatic style guide
+ * https://www.npmjs.com/package/eslint-config-idiomatic
+ * https://github.com/rwaldron/idiomatic.js
+ * 
+ */
+
+
 /**
  * @global {String} currentPage - string containing the element tag of the page you're on 
  * @global {Boolean} pageIsLoading - is true if an animation loading a section is in progress 
