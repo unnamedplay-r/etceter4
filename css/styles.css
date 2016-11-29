@@ -1,0 +1,304 @@
+@charset "UTF-8";
+
+/*------------------------------------------------------------------
+[Table of contents]
+
+- Globals / $globals
+- Header  / $header
+- Pages   / $pages
+- Footer  / $footer
+-------------------------------------------------------------------*/
+
+/*
+
+    For the love of god, don't auto format this.
+
+*/
+
+
+/*------------------------------------------------------------------
+[Globals / $globals]
+*/
+
+.page-wrap { max-width: 87.50rem; /* 1400px */ }
+.futura { font-family: Futura, "Trebuchet MS", Arial, sans-serif; }
+.pb-6rem { padding-bottom: 5rem; }
+
+
+/* 
+
+    Min Widths
+
+*/
+
+.min-w-rem { min-width: 15rem; }
+
+@media only screen and (min-width: 30em) {
+    .min-w-23rem-ns { min-width: 23rem; }
+}
+
+
+/* 
+    
+    Fonts
+    
+*/
+
+.f-1_125rem  { font-size: 1.125rem; } /* 18px */
+.f-1_250rem  { font-size: 1.250rem; } /* 20px */
+.f-2_0625rem { font-size: 2.0625rem;} /* 33px */
+.f-2_250rem  { font-size: 2.250rem; } /* 36px */
+
+
+/* 
+    
+    Anchor Styling
+    
+*/
+
+a:link {
+    color: white;
+    background-color: transparent;
+}
+
+a:visited {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+a:hover {
+    color: transparent;
+    background-color: white;
+    text-decoration: line-through;
+}
+
+a:active {
+    color: white;
+    background-color: transparent;
+    text-decoration: line-through;
+}
+
+
+/*------------------------------------------------------------------
+[Pages / $pages]
+*/
+
+
+/*
+
+    The Mobile Menu
+
+*/
+
+.mobileMenu {
+    position: fixed; /* prevents scrolling when the element isn't in focus */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    opacity: 0;
+    pointer-events: none;
+
+    transform: translateY(100%); /* puts the elements on below the content so it can slide up */   
+    transition: all .3s ease-in-out;
+}
+
+.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+
+/* 
+
+    The styling to the seperator element in the mobile menu
+                   
+                   ----/-/-/-/-/-/----
+
+ */
+
+._etcDashedLine:before,
+._etcDashedLine:after {
+    position: absolute;
+    display: block;
+    top: 9px;
+    width: 50%;                 /* in respect to the width of the span element*/
+    height: 1px;                /* thickness of the lines */
+    background-color: cyan;
+    content: "";
+}
+
+
+/* The line on the right */
+._etcDashedLine:after {
+    right: 0;
+    background-color: yellow;
+}
+
+
+/*------------------------------------------------------------------
+[Footer / $footer]
+*/
+
+footer {
+    height: 5rem;
+}
+
+.audioPlayer {
+    max-width: 22rem;
+    min-width: 13rem;
+    width: 29%;
+}
+
+.social-link {
+    width: 30px;
+    height: 30px;
+}
+
+.social-link:hover {
+    background-color: transparent; /* resets the hover */
+}
+
+
+/* 
+
+    SVG Social Icons Tags 
+
+*/
+
+.social-icon {
+    width: 30px;
+    height: 30px;
+}
+
+i.social-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+}
+
+i.social-icon svg:hover {
+    fill: white;
+}
+
+
+/* 
+
+    Mobile Hamburger
+    (careful, it's a bit cray)
+
+        -----          \  /
+        -----   --->    x
+        -----         /  \    
+
+    http://callmenick.com/post/animating-css-only-hamburger-menu-icons
+
+*/
+
+.c-hamburger {
+    position: relative;
+    overflow: hidden;
+    width: 2.5rem; /* width & height of the container */
+    height: 2.5rem;
+    padding: 0px;
+    font-size: 0;
+    text-indent: -9999px;
+    appearance: none; /* prevents the element from using a platform-native styling */
+    box-shadow: none;
+    border-radius: none;
+    border: none;
+    cursor: pointer;
+    background: black;
+    transition: background 0.3s;
+}
+
+.c-hamburger:focus { outline: none; } /* Removes the border when the button is clicked */
+
+
+/* This is the center line of the hamburger */
+.c-hamburger span {
+    display: block;
+    position: absolute;
+    top: 20px; /* distance to the center of the container */
+    left: 0rem; /* left & right determine padding from the left & right sides of the container */
+    right: 0rem;
+    height: 2px; /* thickness of the line */
+    background: white; /* color of the lines */
+}
+
+
+/* The top (before) and bottom (after) lines of the hamburger */
+.c-hamburger span:before,
+.c-hamburger span:after {
+    position: absolute;
+    display: block;
+    left: 0;
+    width: 100%; /* makes the lines the width of the span element*/
+    height: 2px; /* thickness of the lines */
+    background-color: #fff;
+    content: "";
+}
+
+.c-hamburger span:before { top: -15px; } /* how far top line is from the top of the container */
+.c-hamburger span:after  { bottom: -15px; } 
+
+
+/* styling on the active state */
+
+.c-hamburger--htx span { transition: background 0s 0.3s; }
+.c-hamburger--htx span::before { transition-property: top, transform; }
+.c-hamburger--htx span::after {  transition-property: bottom, transform; }
+
+.c-hamburger--htx span:before,
+.c-hamburger--htx span:after {
+    transition-duration: 0.3s, 0.3s;
+    transition-delay: 0.3s, 0s;
+}
+
+/* active state, i.e. menu open */
+.c-hamburger--htx.is-active span { background: none; }
+
+.c-hamburger--htx.is-active span::before,
+.c-hamburger--htx.is-active span::after { transition-delay: 0s, 0.3s; }
+
+.c-hamburger--htx.is-active span::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.c-hamburger--htx.is-active span::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+
+/*
+
+    Haven't gotten here yet
+    _________________________________________________________________
+
+*/
+
+#followdropup {
+    display: none;
+    float: right;
+    /*position: absolute;*/
+    z-index: 1;
+}
+
+#dropstyle {
+    overflow-y: scroll;
+    overflow-x: scroll;
+}
+
+p.firstMenuItem {
+    /* padding-top: 50px;*/
+}
+
+a.lastMenuItem {
+    padding-bottom: 0px;
+}
