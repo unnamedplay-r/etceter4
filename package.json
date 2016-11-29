@@ -1,0 +1,23 @@
+{
+  "name": "etceter4",
+  "version": "1.0.0",
+  "description": "home of the soul.",
+  "main": "index.html",
+  "dependencies": {
+    "eslint": "^3.10.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "browser-sync start --server --files '*.html, css/*.css, js/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/destroyme/etceter4.git"
+  },
+  "author": "et ceter4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/destroyme/etceter4/issues"
+  },
+  "homepage": "https://github.com/destroyme/etceter4#readme"
+}
