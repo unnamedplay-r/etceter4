@@ -1,16 +1,26 @@
 "use strict";
 
 function setup() {
-  var canvas = createCanvas(100,100);
-  canvas.class('backgroundCanvas')
+  var canvas = createCanvas(windowWidth,windowHeight);
+  canvas.class('backgroundCanvas');
+  canvas.id('landingPageCanvas');
   canvas.parent('landingPage');
+  
+  /* 
+  
+  Tests removing all the stylings p5.js gives the Canvas element so that it fit a div 
+  
+  * 
+  $('#landingPageCanvas').removeAttr('width')
+                         .removeAttr('height')
+                         .removeAttr('style');
+  */
 }
 
 function draw() {
-  if (mouseIsPressed) {
-    fill(0);
-  } else {
-    fill(255);
-  }
-  ellipse(mouseX, mouseY, 80, 80);
+
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
 }
