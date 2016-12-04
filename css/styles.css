@@ -21,7 +21,16 @@
 */
 
 .page-wrap { max-width: 87.50rem; /* 1400px */ }
-.futura { font-family: Futura, "Trebuchet MS", Arial, sans-serif; }
+
+/*
+
+    Fonts
+    http://www.cssfontstack.com/Bodoni-MT
+    http://www.cssfontstack.com/Futura 
+
+*/
+.bodoni { font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; }
+.futura { font-family: Futura, "Trebuchet MS", Arial, sans-serif; } 
 .pb-6rem { padding-bottom: 5rem; }
 
 .tji { text-align: justify; } /* justify's inline spaced text */
@@ -109,6 +118,7 @@ a:active {
 .yellow-link:hover   { color: yellow; background-color: yellow; }
 .yellow-link:active  { color: yellow; background-color: transparent; }
 
+.z-n1 { z-index: -1; }
 
 /*------------------------------------------------------------------
 [Pages / $pages]
