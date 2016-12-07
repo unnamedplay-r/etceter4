@@ -11,7 +11,9 @@ var myp5;
 $('#toWords').mouseenter( function () {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
-    } else if (!myp5) {
+    } 
+    
+    if (!myp5) {
         myp5 = new p5( wordsCanvas, 'menuPageCanvasWrapper' );
         myp5.id = 'words';
     } else if (myp5.id !== 'words') {
@@ -25,7 +27,9 @@ $('#toWords').mouseenter( function () {
 $('#toSound').mouseenter( function() {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
-    } else if (!myp5) {
+    } 
+    
+    if (!myp5) {
         myp5 = new p5( soundCanvas, 'menuPageCanvasWrapper' );
         myp5.id = 'sound';
     } else if (myp5.id !== 'sound') {
@@ -39,7 +43,9 @@ $('#toSound').mouseenter( function() {
 $('#toVision').mouseenter( function() {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
-    } else if (!myp5) {
+    }
+    
+    if (!myp5) {
         myp5 = new p5( visionCanvas, 'menuPageCanvasWrapper' );
         myp5.id = 'vision';
     } else if (myp5.id !== 'vision') {
@@ -53,7 +59,9 @@ $('#toVision').mouseenter( function() {
 $('#toInfo').mouseenter( function() {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
-    } else if (!myp5) {
+    }
+    
+    if (!myp5) {
         myp5 = new p5( infoCanvas, 'menuPageCanvasWrapper' );
         myp5.id = 'info';
     } else if (myp5.id !== 'info') {
@@ -126,6 +134,7 @@ var wordsCanvas = function( p ) {
     var xBounds = 700;
     var yBounds = 300;
     var rate = 0.008;
+    var wordCloud = [];
 
     var words = [
         'KPI',         'death',         'callback',
@@ -150,8 +159,6 @@ var wordsCanvas = function( p ) {
             this.timeX = p.random(-10,10);
             this.timeY = p.random(-10,10);
     }
-
-    var wordCloud = [];
     
     function getRandomWord () {
         
@@ -223,52 +230,154 @@ var wordsCanvas = function( p ) {
 
 var visionCanvas = function ( p ) {
     
-    var horCenter = horCenter = p.windowWidth / 2; 
-    var verCenter = (p.windowHeight - 80) / 2 ;
-    var xBounds = 700;
+    var center = p.createVector(p.windowWidth / 2 , (p.windowHeight - 80) / 2); 
+    var bounds = p.createVector(p.windowWidth, p.windowHeight);
+    var imageSlices = [];
+    var totalSlices = 10;
+    var rate = 0.02;
+    var pg;
     var img;
-    var x = 400;
-    var y = 10;
-    var w = 100;
-    var h = 100;
 
+    function ImageSlice () {
+        this.location = p.createVector(0,0);
+        this.time = p.createVector(p.random(-10,10), p.random(-10,10));
+    }
+
+    function randomWalk (vector) {
+        var _nx = p.noise(vector.time.x);
+        var _ny = p.noise(vector.time.y);
+        vector.time.x += rate;
+        vector.time.y += rate;
+
+        var _x = p.map(_nx, 0, 1, 0, bounds.x);
+        var _y = p.map(_ny, 0, 1, 0, bounds.y);
+        vector.location.set(_x,_y);
+    }
+
+    function _2DRandomWalk ( vector ) {
+        var n = p.noise(vector.timeX);
+        word.timeX += rate;
+        var x = p.map(n, 0, 1, -xBounds, xBounds);
+        return word.x = x;
+    }
+
+    /*
+     *
+     * Setup
+     * 
+     */ 
     p.preload = function () {
-        img = p.loadImage("img/photos/faster/faster1.jpg");
+        // img = p.loadImage("img/photos/faster/faster1.jpg");
+        img = p.loadImage("img/photos/media/media1.jpg");
     }
 
     p.setup = function () {
         p.createCanvas(p.windowWidth, p.windowHeight);
+        
+        // the graphics needed for the square 
+        pg = p.createGraphics(100, 100);
+        pg.background(0,0,0,0);
+        pg.fill(0,0,0,0);
+        pg.rect(0, 0, pg.width, pg.height);
 
-        p.rect(x,y,w,h); // destination
-        p.drawingContext.globalCompositeOperation="source-atop";
-        p.image(img, 0, 0);
+
+        // create the image slices
+        for (var i = 0; i < totalSlices; i++) {
+            imageSlices.push(new ImageSlice());
+        }
     }
 
+
+    /*
+     *
+     * Drawing & Dynamics
+     * 
+     */ 
+
     p.draw = function () {
-
-        // need to figure out how to move the mask around now..
-        // we might need to save the state & restore it?
-        // or maybe use a graphics buffer?
-        p.rect(x,y,w,h); // destination
-        p.drawingContext.globalCompositeOperation="source-atop";
-        p.image(img, 0, 0);
-
-        x++;
         
-        // Save the state, so we can undo the clipping
-        // p.drawingContext.save();
+        p.rect(0,0,1,1); // this acts as a reset for some reason
+        p.drawingContext.globalCompositeOperation="source-over";
+        pg.background(0); // for some reason, this works too
         
-        // Undo the clipping
-        // p.drawingContext.restore();
-
-
+        // draw in all slices
+        for (var i = 0; i < totalSlices; i++) { 
+            var currentSlice = imageSlices[i];
+            randomWalk(currentSlice);
+            p.image(pg, currentSlice.location.x, currentSlice.location.y);
+        }
+        p.drawingContext.globalCompositeOperation="source-in";
+        p.image(img, 0, 0); // IMAGE
 
     }
 
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
         horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - 80) / 2 ;
+        verCenter = (p.windowHeight - 80) / 2;
+    }
+}
+
+/*
+ * 
+ * The Info Canvas
+ * 
+ */
+
+var infoCanvas = function ( p ) {
+    
+    var center = p.createVector(p.windowWidth / 2 , (p.windowHeight - 80) / 2); 
+    var bounds = p.createVector(p.windowWidth, p.windowHeight);
+
+    function visualobject () {
+        this.location = p.createVector(0,0);
+        this.time = p.createVector(p.random(-10,10), p.random(-10,10));
+    }
+
+    /*
+     *
+     * Setup
+     * 
+     */ 
+    p.preload = function () {
+    }
+
+    p.setup = function () {
+        p.createCanvas(p.windowWidth, p.windowHeight);
+    }
+
+
+    /*
+     *
+     * Drawing & Dynamics
+     * 
+     */ 
+
+    p.draw = function () {
+        
+        p.background(255);
+        
+        // Two Vectors, one for the mouse location and one for the center of the window
+        var mouse  = p.createVector(p.mouseX, p.mouseY);
+        var center = p.createVector(p.windowWidth / 2, p.windowHeight / 2);
+        
+        // Vector subtraction & multiplication!
+        mouse.sub(center);
+        // mouse.mult(0.5);
+
+        var mag = mouse.mag();
+        p.fill(0);
+        p.rect(0,0,mag,10);
+        
+        // Draw a line to represent the vector.
+        p.translate(p.windowWidth / 2, p.windowHeight / 2);
+        p.line(0, 0, mouse.x, mouse.y);
+
+    }
+
+    p.windowResized = function () {
+        p.resizeCanvas(p.windowWidth, p.windowHeight);
+        center.set(p.windowWidth / 2 , (p.windowHeight - 80) / 2);
     }
 }
 
@@ -278,6 +387,7 @@ var visionCanvas = function ( p ) {
  * 
  */
 
+// Linear Random Value Generator
 function randomMonteCarlo (max, exponent) {
     while (true) {
         var r1 = Math.random();
@@ -293,6 +403,24 @@ function randomMonteCarlo (max, exponent) {
 function removeCanvas () {
     $('#menuPageCanvasWrapper canvas').remove();
 }
+
+function _2DRandomWalk (vector) {
+    var _nx = p.noise(vector.time.x);
+    var _ny = p.noise(vector.time.y);
+    vector.time.x += rate;
+    vector.time.y += rate;
+
+    var _x = p.map(_nx, 0, 1, 0, bounds.x);
+    var _y = p.map(_ny, 0, 1, 0, bounds.y);
+    vector.location.set(_x,_y);
+}
+
+/*
+ * 
+ * Failed Attempts at Art
+ * 
+ */
+
 
         /*
          * 
@@ -331,3 +459,5 @@ function removeCanvas () {
         //     p.pixels[i+3] = p.alpha(bright);
         // }
         // p.updatePixels();
+
+
