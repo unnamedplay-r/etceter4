@@ -1,6 +1,16 @@
 "use strict";
 
 var myp5;
+var visionImage;
+var footerHeight = $('footer').css('height').replace('px', '');
+
+$(document).ready(function () {
+    // find the storage
+    visionImage = document.getElementById("imageStorage");
+    
+    // load image for vision canvas & save it der
+    visionImage.src = 'img/photos/glitchpr0n/glitch26.png';
+});
 
 /*
  * 
@@ -91,7 +101,7 @@ var soundCanvas = function ( p ) {
         p.createCanvas(p.windowWidth, p.windowHeight);
         
         horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - 80) / 2 ;
+        verCenter = (p.windowHeight - footerHeight) / 2 ;
 
     }
 
@@ -115,7 +125,7 @@ var soundCanvas = function ( p ) {
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
         horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - 80) / 2 ;
+        verCenter = (p.windowHeight - footerHeight) / 2 ;
     }
 }
 
@@ -195,7 +205,7 @@ var wordsCanvas = function( p ) {
         p.textSize(24);
         
         horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - 80) / 2 ;
+        verCenter = (p.windowHeight - footerHeight) / 2 ;
 
         // populate the word cloud
         for (var i = 0; i < 20; i++) {
@@ -217,7 +227,7 @@ var wordsCanvas = function( p ) {
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
         horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - 80) / 2 ;
+        verCenter = (p.windowHeight - footerHeight) / 2 ;
     }
 
 }
@@ -229,36 +239,100 @@ var wordsCanvas = function( p ) {
  */
 
 var visionCanvas = function ( p ) {
-    
-    var center = p.createVector(p.windowWidth / 2 , (p.windowHeight - 80) / 2); 
-    var bounds = p.createVector(p.windowWidth, p.windowHeight);
+    var heightOfCanvas = p.windowHeight - footerHeight;
     var imageSlices = [];
-    var totalSlices = 10;
-    var rate = 0.02;
+    var totalSlices = 20;
+    var sliceHeightBigRatio = heightOfCanvas * (1/10);
+    var sliceHeightSmallRatio = heightOfCanvas * (1/4);
+    var topSpeed = 20;
     var pg;
     var img;
 
-    function ImageSlice () {
-        this.location = p.createVector(0,0);
+    function ImageSlice (heightWeight) {
+        var height;
+        var heightOffset;
+
+        if (heightWeight > .5) { 
+            height = heightOfCanvas - (sliceHeightBigRatio + sliceHeightBigRatio);
+            heightOffset = sliceHeightBigRatio;
+        } else {
+            height = heightOfCanvas - (sliceHeightSmallRatio + sliceHeightSmallRatio);
+            heightOffset = sliceHeightSmallRatio;
+        }
+
+        // the graphics needed for the square 
+        var sliceWidth = 14;
+        this.slice = p.createGraphics(sliceWidth, height);
+        this.slice.background(0,0,0,0);
+        this.slice.fill(0,0,0,0);
+        this.slice.rect(0, 0, this.slice.width, this.slice.height);
+
+        this.reverse = false; // goes backwards
+        this.acceleration = p.createVector(.03,0);
+        this.location = p.createVector(-sliceWidth + p.random(-1000,0), heightOffset); // start before the line
+        this.velocity = p.createVector(p.random(0.01,10), 0);
         this.time = p.createVector(p.random(-10,10), p.random(-10,10));
     }
 
-    function randomWalk (vector) {
-        var _nx = p.noise(vector.time.x);
-        var _ny = p.noise(vector.time.y);
-        vector.time.x += rate;
-        vector.time.y += rate;
+    ImageSlice.prototype.update = function () {
+        if (this.reverse === false) {
+            this.velocity.add(this.acceleration);
+            if (this.velocity.x >= topSpeed) {
+                this.reverse = true;
+            }
+        } else {  // if (this.reverse === true)
+            if (this.velocity.x >= -topSpeed) {
+                this.velocity.sub(this.acceleration);
+            } else {
+                this.reverse = false;
+            }
+        }
 
-        var _x = p.map(_nx, 0, 1, 0, bounds.x);
-        var _y = p.map(_ny, 0, 1, 0, bounds.y);
-        vector.location.set(_x,_y);
+        this.location.add(this.velocity);
     }
 
-    function _2DRandomWalk ( vector ) {
-        var n = p.noise(vector.timeX);
-        word.timeX += rate;
-        var x = p.map(n, 0, 1, -xBounds, xBounds);
-        return word.x = x;
+    ImageSlice.prototype.checkEdges = function () {
+        // acceleration to the right (left to right directionality)
+        if (this.reverse === false) {
+        
+            // are you past the right edge?
+            if (this.location.x > p.windowWidth) {
+                 
+                // are you going right?
+                if (this.velocity.x > 0) {
+                    this.location.x = p.random(-1000,0); // cool, go back to the other side
+                } 
+                
+                // are you going left? (coming out of a reverse)
+                // else if (this.velocity.x < 0) { } // do nothing! 
+                
+            } 
+            
+            // are you past the left edge?
+            else if (this.location.x < 0) { 
+                
+                // are you going left?
+                if (this.velocity.x < 0) {
+                    this.location.x = p.random(p.windowWidth, p.windowWidth + 1000); // go back to the right side
+                } 
+
+                // are you going right? (coming out of a reverse)
+                // else if (this.velocity.x > 0) { }  // do nothing!
+            }
+        } 
+        
+        // acceleration to the left (right to left directionality)
+        else {
+            if (this.location.x > p.windowWidth) {
+                if (this.velocity.x > 0) {
+                    this.location.x = p.random(-1000,0) 
+                }
+            } else if (this.location.x < 0) { // left side
+                if (this.velocity.x <= 0) {
+                    this.location.x = p.random(p.windowWidth, p.windowWidth + 1000);
+                }
+            }
+        }
     }
 
     /*
@@ -266,24 +340,16 @@ var visionCanvas = function ( p ) {
      * Setup
      * 
      */ 
-    p.preload = function () {
-        // img = p.loadImage("img/photos/faster/faster1.jpg");
-        img = p.loadImage("img/photos/media/media1.jpg");
-    }
+    p.preload = function () {}
 
     p.setup = function () {
         p.createCanvas(p.windowWidth, p.windowHeight);
-        
-        // the graphics needed for the square 
-        pg = p.createGraphics(100, 100);
-        pg.background(0,0,0,0);
-        pg.fill(0,0,0,0);
-        pg.rect(0, 0, pg.width, pg.height);
-
+        img = p.loadImage(visionImage.src);
 
         // create the image slices
         for (var i = 0; i < totalSlices; i++) {
-            imageSlices.push(new ImageSlice());
+            imageSlices.push(new ImageSlice(p.random()));
+            imageSlices[i].location.sub(10,0);
         }
     }
 
@@ -298,13 +364,15 @@ var visionCanvas = function ( p ) {
         
         p.rect(0,0,1,1); // this acts as a reset for some reason
         p.drawingContext.globalCompositeOperation="source-over";
-        pg.background(0); // for some reason, this works too
+        // pg.background(0); // for some reason, this works too
         
         // draw in all slices
         for (var i = 0; i < totalSlices; i++) { 
             var currentSlice = imageSlices[i];
-            randomWalk(currentSlice);
-            p.image(pg, currentSlice.location.x, currentSlice.location.y);
+            currentSlice.update();
+            currentSlice.checkEdges();
+            currentSlice.slice.background(0);
+            p.image(currentSlice.slice, currentSlice.location.x, currentSlice.location.y);
         }
         p.drawingContext.globalCompositeOperation="source-in";
         p.image(img, 0, 0); // IMAGE
@@ -313,8 +381,6 @@ var visionCanvas = function ( p ) {
 
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
-        horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - 80) / 2;
     }
 }
 
@@ -326,12 +392,53 @@ var visionCanvas = function ( p ) {
 
 var infoCanvas = function ( p ) {
     
-    var center = p.createVector(p.windowWidth / 2 , (p.windowHeight - 80) / 2); 
+    var center = p.createVector(p.windowWidth / 2 , (p.windowHeight - footerHeight) / 2); // (width, height)
     var bounds = p.createVector(p.windowWidth, p.windowHeight);
+    var topSpeed = 20;
+    var ball;
+    var _keyAccel = p.createVector(10.0, 10.0);
 
-    function visualobject () {
-        this.location = p.createVector(0,0);
+    function Ball () {
+        this.acceleration = p.createVector(0, 0);
+        this.location = p.createVector(center.x, center.y);
         this.time = p.createVector(p.random(-10,10), p.random(-10,10));
+        this.velocity = p.createVector(0, 0);
+    }
+
+    Ball.prototype.update = function () {
+        
+        var mouse = p.createVector(p.mouseX, p.mouseY);
+        var direction = p5.Vector.sub(mouse,this.location);
+
+        direction.normalize();
+        direction.mult(0.5);
+        direction.div(Math.pow(direction.mag(), 2)); // divide it by the distance squared so it has some gravity
+        this.acceleration = direction;
+
+        this.velocity.add(this.acceleration);
+        this.velocity.limit(topSpeed);
+        this.location.add(this.velocity);
+    }
+
+    Ball.prototype.checkEdges = function () {
+        if (this.location.x > p.windowWidth) {
+            this.location.x = 0;
+        } else if (this.location.x < 0) {
+            this.location.x = p.windowWidth;
+        }
+    
+        if (this.location.y > p.windowHeight) {
+            this.location.y = 0;
+        } else if (this.location.y < 0) {
+            this.location.y = p.windowHeight;
+        }
+    }
+
+    Ball.prototype.display = function () {
+        p.stroke(0);
+        p.fill(175);
+        // The Mover is displayed.
+        p.ellipse(this.location.x, this.location.y, 16, 16);
     }
 
     /*
@@ -344,6 +451,7 @@ var infoCanvas = function ( p ) {
 
     p.setup = function () {
         p.createCanvas(p.windowWidth, p.windowHeight);
+        ball = new Ball();
     }
 
 
@@ -354,30 +462,25 @@ var infoCanvas = function ( p ) {
      */ 
 
     p.draw = function () {
-        
         p.background(255);
-        
-        // Two Vectors, one for the mouse location and one for the center of the window
-        var mouse  = p.createVector(p.mouseX, p.mouseY);
-        var center = p.createVector(p.windowWidth / 2, p.windowHeight / 2);
-        
-        // Vector subtraction & multiplication!
-        mouse.sub(center);
-        // mouse.mult(0.5);
-
-        var mag = mouse.mag();
-        p.fill(0);
-        p.rect(0,0,mag,10);
-        
-        // Draw a line to represent the vector.
-        p.translate(p.windowWidth / 2, p.windowHeight / 2);
-        p.line(0, 0, mouse.x, mouse.y);
-
+        ball.update();
+        ball.checkEdges();
+        ball.display();
     }
 
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
-        center.set(p.windowWidth / 2 , (p.windowHeight - 80) / 2);
+        center.set(p.windowWidth / 2 , (p.windowHeight - footerHeight) / 2);
+    }
+
+    p.keyPressed = function () {
+        if (p.keyCode == p.UP_ARROW) {
+            ball.velocity.add(_keyAccel);
+            // ball.location.add(ball.velocity);
+        } else if (p.keyCode == p.DOWN_ARROW) {
+            ball.velocity.sub(_keyAccel);
+            // ball.location.sub(ball.velocity);
+        }
     }
 }
 
@@ -461,3 +564,27 @@ function _2DRandomWalk (vector) {
         // p.updatePixels();
 
 
+        /*
+         * Successful Line Drawing thingy!
+         */ 
+        // p.draw = function () {
+        
+        //     p.background(255);
+            
+        //     // Two Vectors, one for the mouse location and one for the center of the window
+        //     var mouse  = p.createVector(p.mouseX, p.mouseY);
+        //     var center = p.createVector(p.windowWidth / 2, p.windowHeight / 2);
+            
+        //     // Vector subtraction & multiplication!
+        //     mouse.sub(center);
+        //     // mouse.mult(0.5);
+
+        //     var mag = mouse.mag();
+        //     p.fill(0);
+        //     p.rect(0,0,mag,10);
+            
+        //     // Draw a line to represent the vector.
+        //     p.translate(center.x, center.y);
+        //     p.line(0, 0, mouse.x, mouse.y);
+
+        // }
