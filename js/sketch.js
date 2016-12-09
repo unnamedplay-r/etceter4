@@ -157,7 +157,9 @@ var wordsCanvas = function( p ) {
         'common',      'take',          'question',
         'rain',        'clouds',        'ai',
         'numbers',     'scene',         'return',
-        'personality', 'stakeholder',   'budget'
+        'personality', 'stakeholder',   'budget',
+        'pain',        'depression',    'hate',
+        'constant',    'repetition',    'space'
     ]
 
     function Word ( text ) {
@@ -242,7 +244,7 @@ var visionCanvas = function ( p ) {
     var heightOfCanvas = p.windowHeight - footerHeight;
     var imageSlices = [];
     var totalSlices = 20;
-    var sliceHeightBigRatio = heightOfCanvas * (1/10);
+    var sliceHeightBigRatio = heightOfCanvas * (1/8);
     var sliceHeightSmallRatio = heightOfCanvas * (1/4);
     var topSpeed = 20;
     var pg;
@@ -252,7 +254,10 @@ var visionCanvas = function ( p ) {
         var height;
         var heightOffset;
 
-        if (heightWeight > .5) { 
+        if (heightWeight < .333) { 
+            height = heightOfCanvas - (sliceHeightBigRatio/6 + sliceHeightBigRatio/6);
+            heightOffset = sliceHeightBigRatio/6 ;
+        } else if (heightWeight < .666) {
             height = heightOfCanvas - (sliceHeightBigRatio + sliceHeightBigRatio);
             heightOffset = sliceHeightBigRatio;
         } else {
@@ -261,7 +266,7 @@ var visionCanvas = function ( p ) {
         }
 
         // the graphics needed for the square 
-        var sliceWidth = 14;
+        var sliceWidth = 15;
         this.slice = p.createGraphics(sliceWidth, height);
         this.slice.background(0,0,0,0);
         this.slice.fill(0,0,0,0);
