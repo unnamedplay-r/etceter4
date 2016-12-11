@@ -135,15 +135,18 @@ var soundCanvas = function ( p ) {
  * 
  */
 
+
+// TODO : Make two distinct clouds - they repel one another - each cloud contains different emotions
 var wordsCanvas = function( p ) {
 
     "use strict";
-    
-    var horCenter = 0;
-    var verCenter = 0;
-    var xBounds = 700;
-    var yBounds = 300;
-    var rate = 0.008;
+
+    var center = p.createVector(p.windowWidth / 2, (p.windowHeight - footerHeight) / 2);
+    var bounds = p.createVector(700, 300);
+    var textBounds = p.createVector(12,30);
+    var rate = p.createVector(0.008, 0.008);
+    var bezierRate = 0.01;
+    var wordTotal = 30; 
     var wordCloud = [];
 
     var words = [
@@ -155,7 +158,7 @@ var wordsCanvas = function( p ) {
         'remorse',     'life',          'love',
         'forget',      'sculpture',     'market',
         'common',      'take',          'question',
-        'rain',        'clouds',        'ai',
+        'rain',        'clouds',        'AI',
         'numbers',     'scene',         'return',
         'personality', 'stakeholder',   'budget',
         'pain',        'depression',    'hate',
@@ -163,17 +166,16 @@ var wordsCanvas = function( p ) {
     ]
 
     function Word ( text ) {
-            this.x = 0;
-            this.y = 0;
+            this.bezierTime = p.random();
+            this.bezierReverse = Math.random() >= 0.5;
+            this.location = p.createVector(p.random(-20,20), p.random(-20,20));
             this.text = text;
-            this.opacity = 1;
-            this.scale = 1;
-            this.timeX = p.random(-10,10);
-            this.timeY = p.random(-10,10);
+            this.textSize = Math.floor(p.random(18,28) + 1);
+            this.noiseTime = p.createVector(p.random(-10,10), p.random(-10,10));
     }
     
     function getRandomWord () {
-        
+        // don't repeat any words
         do {
             var randomWord = words[Math.floor(Math.random() * words.length)];
         } while ( wordCloud.some(hasWord) );
@@ -181,55 +183,87 @@ var wordsCanvas = function( p ) {
         function hasWord ( word ) {
             return word.text === randomWord;
         }
-
         return randomWord;
     }
 
-    function randomWalk_X ( word ) {
-        var n = p.noise(word.timeX);
-        word.timeX += rate;
-        var x = p.map(n, 0, 1, -xBounds, xBounds);
-        return word.x = x;
-    } 
+    Word.prototype._2DRandomWalk = function () {
+        var _nx = p.noise(this.noiseTime.x);
+        var _ny = p.noise(this.noiseTime.y);
+        this.noiseTime.add(rate);
 
-    function randomWalk_Y ( word ) {
-        var n = p.noise(word.timeY);
-        word.timeY += rate;
-        var y = p.map(n, 0, 1, -yBounds, yBounds);
-        return word.y = y;
-    } 
+        var _x = p.map(_nx, 0, 1, -bounds.x, bounds.x);
+        var _y = p.map(_ny, 0, 1, -bounds.y, bounds.y);
+        this.location.set(_x,_y);
+    }
+
+    Word.prototype.update = function () {
+        this._2DRandomWalk();
+        this._updateBezier();
+    }
+
+    Word.prototype._updateBezier = function () {
+        var size = p.map(getBezierPoint(this.bezierTime), 0, 1, textBounds.x, textBounds.y);
+        
+        if (this.bezierReverse === true) {
+            if ( this.bezierTime < 0 ) {
+                this.bezierTime += bezierRate;
+                this.bezierReverse = false;
+            } else {
+                this.bezierTime -= bezierRate;
+            }
+        } else { // bezierReverse = false
+            if ( this.bezierTime < 1 ) {
+                this.bezierTime += bezierRate;
+            } else {
+                this.bezierTime -= bezierRate;
+                this.bezierReverse = true;
+            }
+        }
+
+        this.textSize = size;
+    }
+
+    /*
+     *
+     * Setup
+     * 
+     */
 
     p.setup = function () {
         p.createCanvas(p.windowWidth, p.windowHeight);
         
         // TODO: do some error checking to see if we have Bodoni MT & fallback to Garamond or Georgia
         p.textFont("Bodoni MT");
-        p.textSize(24);
         
-        horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - footerHeight) / 2 ;
 
         // populate the word cloud
-        for (var i = 0; i < 20; i++) {
+        for (var i = 0; i < wordTotal; i++) {
             wordCloud.push(new Word(getRandomWord()));
         }
     }
 
+    /*
+     *
+     * Drawing & Dynamics
+     * 
+     */
+
     p.draw = function () {
         p.background(255);
-        p.translate(horCenter, verCenter);
+        p.translate(center.x, center.y);
 
-        for (var i = 0; i < 20; i++) {
+        for (var i = 0; i < wordTotal; i++) {
             var currentWord = wordCloud[i];
+            currentWord.update();
             p.fill(0);
-            p.text(currentWord.text, randomWalk_X(currentWord), randomWalk_Y(currentWord));
+            p.textSize(currentWord.textSize);
+            p.text(currentWord.text, currentWord.location.x, currentWord.location.y);
         }
     }
 
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
-        horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - footerHeight) / 2 ;
+        center.set(p.windowWidth / 2, (p.windowHeight - footerHeight) / 2);
     }
 
 }
@@ -593,3 +627,31 @@ function _2DRandomWalk (vector) {
         //     p.line(0, 0, mouse.x, mouse.y);
 
         // }
+
+
+function getBezierPoint ( t ) {
+    // from here: http://math.stackexchange.com/questions/26846/is-there-an-explicit-form-for-cubic-b%C3%A9zier-curves
+    // y = u0(1−x^3) + 3*u1*(1−x^2)*x + 3*u2*(1−x)*x^2 + u3*x^3
+    //        A             B                 C             D  
+    // t = 'time'
+
+    if (t > 1) {
+        t = 1;
+    } else if (t < 0) {
+        t = 0;
+    }
+
+    var curve = { // ease in curve
+        u0: 0, 
+        u1: 0.05,
+        u2: 0.25,
+        u3: 1
+    }
+
+    var A = curve.u0 * (1 - Math.pow(t, 3));
+    var B = 3 * curve.u1 * (1 - Math.pow(t, 2)) * t;
+    var C = 3 * curve.u2 * (1 - t) * Math.pow(t, 2);
+    var D = curve.u3 * Math.pow(t, 3);
+
+    return A + B + C + D;
+}
