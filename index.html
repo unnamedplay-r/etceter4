@@ -35,7 +35,7 @@
     <main id="pages" class="min-vh-100">
         
         <!-- Landing Page  -->
-        <section id="landingPage" class="flex items-center vh-100 w-100 pb-6rem relative bg-black white">
+        <section id="landingPage" class="flex items-center vh-100 w-100 pb-6rem relative bg-black white" style="display:none;">
             <!--<h1 class="dn"> Landing Page </h1>  Used for HTML5 Outline  -->
             <section class="center tc">
                 <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
@@ -47,8 +47,8 @@
             </section>
         </section>
 
-        <!-- Menu Page  -->
-        <section id="menuPage" class="vh-100 w-100 pb-6rem black">
+        <!-- Main Menu -->
+        <section id="menuPage" class="dn vh-100 w-100 pb-6rem black">
             <section id="menuPageCanvasWrapper" class="fixed vh-100 w-100 pb-6rem z-n1"></section>
             <section id="menuPageWrapper" class="flex items-center vh-100 w-100 pb-6rem">
                 <section id="menuPageMenu" class="flex flex-column justify-between center tc ba bg-white-50 bw1 b--black pa4">
@@ -60,8 +60,76 @@
             </section>
         </section>
 
-        <!-- Image Storage -->
-        <img id="imageStorage" class="dn" src="" alt="storage for canvases"/>
+        <!-- Menu // Words -->
+        <section id="wordsPage" class="dn vh-100 w-100 pb-6rem black">
+            <section id="wordsContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
+                <div id="wordsOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
+                    <div id="wordsInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
+                        <div><a href="#diary" id="toDiary" class="f3 f-2_250rem-ns link white-link">DIARY</a></div>
+                        <div><a href="#blog" id="toBlog" class="f3 f-2_250rem-ns link cyan-link">BLOG</a></div>
+                        <div><a href="http://met4morphoses.com" class="f3 f-2_250rem-ns link magenta-link">MET4MORPHOSES</a></div>
+                        <div><a href="#loophole" id="toSound" class="f3 f-2_250rem-ns link yellow-link">LOOPHOLE</a></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Menu // Sight -->
+        <section id="sightPage" class="dn vh-100 w-100 pb-6rem black">
+            <section id="sightContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
+                <div id="sightOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
+                    <div id="sightInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
+                        <div><a href="#video" id="toVideo" class="f3 f-2_250rem-ns link white-link">VIDEO</a></div>
+                        <div><a href="#ogod" id="toOGOD" class="f3 f-2_250rem-ns link cyan-link">OGOD</a></div>
+                        <div><a href="#still" id="toStill" class="f3 f-2_250rem-ns link magenta-link">STILL</a></div>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- Sound -->
+        <section id="soundPage" class="dn h-100 w-100 pb-6rem black">
+            <section id="soundContainer" class="flex justify-center items-center flex-wrap flex-row w-90 w-100-ns mw9-ns center">
+                <section id="OneGameOneDay" class="w-18_750rem shadedow ma4">
+                    <div id="BCContainer" class="h-18_750rem">
+                        <iframe style="border: 0; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=3780915385/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/ogod">OGOD by ET CETER4</a></iframe> 
+                    </div>
+                    <div id="textContainer" class="pt4 h-6_250rem tc relative">
+                        <p class="mt1 mb1">OGOD // 2015</p>
+                        <a href="#ogod" id="toOGOD" class="red-link link">WATCH THE VISUAL ALBUM</a>
+                    </div>
+                </section>
+
+                <section id="RMXS" class="w-18_750rem shadedow ma4">
+                    <div id="BCContainer" class="h-18_750rem">
+                        <iframe style="border: 0; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=604244064/size=large/bgcol=ffffff/linkcol=333333/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/et-ceter4-rmxs">ET CETER4 RMXS by ET CETER4</a></iframe>
+                    </div>
+                    <div id="textContainer" class="pt4 h-6_250rem tc relative">
+                        <p class="mt3 mb1">RMXS // 20XX</p>
+                    </div>
+                </section>
+
+                <section id="ProgressionOfDigression" class="w-18_750rem shadedow ma4">
+                    <div id="BCContainer" class="h-18_750rem">
+                        <iframe style="border: 10px; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=489900059/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/the-progression-of-digression">ProgressionDigression by ET CETER4</a></iframe>
+                    </div>
+                    <div id="textContainer" class="pt4 h-6_250rem tc relative">
+                        <p class="mt1 mb1">PROGRESSION OF DIGRESSION<br>// 2012</p>
+                    </div>
+                </section>
+
+                <section id="Etcetera" class="w-18_750rem shadedow ma4">
+                    <div id="BCContainer" class="h-18_750rem">
+                        <iframe style="border: 10px; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=448587485/size=large/bgcol=ffffff/linkcol=de270f/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/etc">Etc by ET CETER4</a></iframe>
+                    </div>
+                    <div id="textContainer" class="pt4 h-6_250rem tc relative">
+                        <p class="mt3 mb1">ETCETERA // 2011</p>
+                    </div>
+                </section>
+            </section>
+        </section>
+
+
 
     </main>
 
@@ -81,6 +149,9 @@
             <li><a>YOUTUBE</a></li>
         </ul>
     </section>
+    
+    <!-- Image Storage -->
+    <img id="imageStorage" class="dn" src="" alt="Storage For Canvases!"/>
 
     <!-- Footer -->
     <footer class="fixed bottom-0 bg-black w-100 pa3">

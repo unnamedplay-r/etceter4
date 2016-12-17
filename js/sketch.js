@@ -91,41 +91,128 @@ $('#toInfo').mouseenter( function() {
  */
 
 var soundCanvas = function ( p ) {
+    var fr = 14;
+    var bounds = p.createVector(0, p.windowWidth);
+    var leftMargin = 10;
+    var charSize = p.createVector(20,20);
+    var noisesWidth = p.windowWidth / charSize.x;
+    var noisesHeight = (p.windowHeight - footerHeight) / charSize.y;
+    var noisesTotal = Math.floor(noisesWidth * noisesHeight);
+    var ySeperator = 25;
+    var noises = [];
+    var color = {};
 
-    var horCenter = 0;
-    var verCenter = 0;
-    var xBounds = 0;
-    var yBounds = 0;
+    function Noise () {
+        this.character = getCharacter();
+        this.location = p.createVector(leftMargin, 10);
+        this.color = getColor();
+    }
+
+    Noise.prototype.update = function () {
+        this.location.add(1,p.random());
+    }
+
+    function getCharacter () {
+        var weight = p.random();
+
+        if (weight < 0.5) {
+            return '.';
+        } else {
+            return ':';
+        }
+    }
+
+    function getColor () {
+        var weight = p.random();
+
+        if (weight < 0.10) {
+            return color.cyan;
+        } else if (weight < 0.30) {
+            return color.yellow;
+        } else if (weight < 0.75) {
+            return color.black;
+        } else {
+            return color.magenta;
+        }
+    }
+    
+
+
+    Noise.prototype.setLocation = function ( previousNoise ) {
+        if (previousNoise !== undefined) {
+            if ( (previousNoise.location.x + charSize.x) < p.windowWidth ){
+                // creates row
+                this.location = p5.Vector.add(previousNoise.location, p.createVector(charSize.x,0));
+            } else {
+                // creates new column
+                this.location = p.createVector(leftMargin ,previousNoise.location.y + ySeperator);
+            }
+        }
+    }
+
+    Noise.prototype.setColor = function ( noiz ) {
+        if (noiz !== undefined) { this.color = noiz.color; }
+    }
+    
+    /*
+     *
+     * Setup
+     * 
+     */
 
     p.setup = function () {
         p.createCanvas(p.windowWidth, p.windowHeight);
-        
-        horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - footerHeight) / 2 ;
+        p.frameRate(fr);
 
+        color = {
+            cyan: p.color('cyan'),
+            yellow: p.color('yellow'),
+            black: p.color('black'),
+            magenta: p.color('magenta')
+        }
+
+        p.textSize(32);
+        p.textAlign(p.CENTER, p.CENTER);
+
+        // populate the noise
+        for (var i = 0; i < noisesTotal; i++) {
+            noises.push(new Noise());
+            noises[i].setLocation(noises[i-1]);
+        }
     }
+
+    /*
+     *
+     * Drawing & Dynamics
+     * 
+     */
 
     p.draw = function () {
         p.background(255);
-        p.translate(horCenter, verCenter);
-        for (var i = 0; i < 40; i++) {
-            var r = Math.floor(p.randomGaussian(127,40)) % 255;
-            var g = Math.floor(p.randomGaussian(127,40)) % 255;
-            var b = Math.floor(p.randomGaussian(127,40)) % 255;
-            var c = p.color(r, g, b);
-            p.fill(c);
-            p.noStroke();
+        for (var i = 0; i < noisesTotal; i++) {
+            var currentNoise = noises[i];
+            var prevNoise = noises[i-1]
 
-            var x = Math.floor(p.randomGaussian(0,100));
-            var y = Math.floor(p.randomGaussian(0,100));
-            p.ellipse(x, y, 40, 40);
+            // currentNoise.setColor(prevNoise);
+
+            // currentNoise.update();
+            p.fill(getColor());
+            p.text(getCharacter(), currentNoise.location.x, currentNoise.location.y);
         }   
     }
 
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
-        horCenter = p.windowWidth / 2;
-        verCenter = (p.windowHeight - footerHeight) / 2 ;
+        noisesWidth = p.windowWidth / charSize.x;
+        noisesHeight = p.windowHeight / charSize.y;
+        noisesTotal = Math.floor(noisesWidth * noisesHeight);
+
+        // populate the noise
+        noises = [];
+        for (var i = 0; i < noisesTotal; i++) {
+            noises.push(new Noise());
+            noises[i].setLocation(noises[i-1]);
+        }
     }
 }
 
@@ -134,7 +221,6 @@ var soundCanvas = function ( p ) {
  * The Words Canvas
  * 
  */
-
 
 // TODO : Make two distinct clouds - they repel one another - each cloud contains different emotions
 var wordsCanvas = function( p ) {
@@ -378,7 +464,8 @@ var visionCanvas = function ( p ) {
      *
      * Setup
      * 
-     */ 
+     */
+
     p.preload = function () {}
 
     p.setup = function () {
@@ -430,54 +517,51 @@ var visionCanvas = function ( p ) {
  */
 
 var infoCanvas = function ( p ) {
-    
-    var center = p.createVector(p.windowWidth / 2 , (p.windowHeight - footerHeight) / 2); // (width, height)
-    var bounds = p.createVector(p.windowWidth, p.windowHeight);
-    var topSpeed = 20;
-    var ball;
-    var _keyAccel = p.createVector(10.0, 10.0);
 
-    function Ball () {
-        this.acceleration = p.createVector(0, 0);
-        this.location = p.createVector(center.x, center.y);
-        this.time = p.createVector(p.random(-10,10), p.random(-10,10));
-        this.velocity = p.createVector(0, 0);
+    var forces = {};
+    var lines = [];
+    var maxLines = 60;
+    var lineLengthBounds = p.createVector(0,0);
+
+    function Line () {
+        this.location = p.createVector(p.random(0, p.windowWidth), p.random(0, p.windowHeight));
+        this.startEnd = p.createVector(0,0);
+        this.dimensions = p.createVector(1,1);
+        this.color = p.color(0);
+        this.velocity = p.createVector(2,0);
+        this.acceleration = p.createVector(0,0);
+        this.angle = 0;
     }
 
-    Ball.prototype.update = function () {
-        
-        var mouse = p.createVector(p.mouseX, p.mouseY);
-        var direction = p5.Vector.sub(mouse,this.location);
+    Line.prototype.update = function () {
 
-        direction.normalize();
-        direction.mult(0.5);
-        direction.div(Math.pow(direction.mag(), 2)); // divide it by the distance squared so it has some gravity
-        this.acceleration = direction;
+        // var size = p.map(getBezierPoint(this.bezierTime), 0, 1, textBounds.x, textBounds.y);
+        // this.velocity = p.map(hey, 0, 1, startEnd.x, this.startEnd.y); // maps the velocity to the curve
 
-        this.velocity.add(this.acceleration);
-        this.velocity.limit(topSpeed);
+        // this.velocity.add(this.acceleration);
         this.location.add(this.velocity);
+        this.velocity.sub(0.01, 0);
     }
 
-    Ball.prototype.checkEdges = function () {
-        if (this.location.x > p.windowWidth) {
-            this.location.x = 0;
-        } else if (this.location.x < 0) {
-            this.location.x = p.windowWidth;
-        }
-    
-        if (this.location.y > p.windowHeight) {
-            this.location.y = 0;
-        } else if (this.location.y < 0) {
-            this.location.y = p.windowHeight;
-        }
+    Line.prototype.display = function () {
+        p.ellipse(this.location.x, this.location.y, this.dimensions.x, this.dimensions.y);
     }
 
-    Ball.prototype.display = function () {
-        p.stroke(0);
-        p.fill(175);
-        // The Mover is displayed.
-        p.ellipse(this.location.x, this.location.y, 16, 16);
+    Line.prototype.checkEdges= function () {
+        for (var i = 0; i < 2; i++) {
+            if (this.location[i].x > p.windowWidth) {
+                this.location[i].x = p.windowWidth;
+                this.velocity.x *= -1;
+            } else if (this.location[i].x < 0) {
+                this.velocity.x *= -1;
+                this.location[i].x = 0;
+            }
+        
+            if (this.location[i].y > p.windowHeight - footerHeight) {
+                this.velocity.y *= -1; // git down brahmen, git down.
+                this.location[i].y = p.windowHeight - footerHeight;
+            }
+        }
     }
 
     /*
@@ -490,9 +574,12 @@ var infoCanvas = function ( p ) {
 
     p.setup = function () {
         p.createCanvas(p.windowWidth, p.windowHeight);
-        ball = new Ball();
-    }
 
+        for (var i = 0; i < 5; i++) {
+            lines.push( new Line() );
+        }
+
+    }
 
     /*
      *
@@ -501,25 +588,28 @@ var infoCanvas = function ( p ) {
      */ 
 
     p.draw = function () {
-        p.background(255);
-        ball.update();
-        ball.checkEdges();
-        ball.display();
+        p.background(p.color('rgba(255, 255, 255, 0.01)'));
+
+        for ( var i = 0; i < lines.length; i++ ) {
+            lines[i].update();
+            // lines[i].checkEdges();
+            lines[i].display();
+        }
     }
 
     p.windowResized = function () {
         p.resizeCanvas(p.windowWidth, p.windowHeight);
-        center.set(p.windowWidth / 2 , (p.windowHeight - footerHeight) / 2);
     }
 
     p.keyPressed = function () {
         if (p.keyCode == p.UP_ARROW) {
-            ball.velocity.add(_keyAccel);
-            // ball.location.add(ball.velocity);
-        } else if (p.keyCode == p.DOWN_ARROW) {
-            ball.velocity.sub(_keyAccel);
-            // ball.location.sub(ball.velocity);
         }
+        
+        if (p.keyCode == p.DOWN_ARROW) {
+        }
+    }
+
+    p.mousePressed = function () {
     }
 }
 
@@ -557,83 +647,18 @@ function _2DRandomWalk (vector) {
     vector.location.set(_x,_y);
 }
 
-/*
- * 
- * Failed Attempts at Art
- * 
- */
-
-
-        /*
-         * 
-         * Failed attempt to make clouds using noise
-         * 
-         */
-        // p.loadPixels();
-        // var d = p.pixelDensity();  
-        
-        // // we multiply by 4 because the pixel[] array is the size of the display window * 4 (including the pixel density)
-        // var widthOfCanvas = Math.pow(4, d) * p.width;
-        // var heightOfCanvas = Math.pow(4, d) * p.height;
-        
-        // for (var y = 0; y < heightOfCanvas; y+=4) {
-        //     for (var x = 0; x < widthOfCanvas; x+=4) {
-        //         var grayScale = Math.floor(p.random(255));
-        //         p.pixels[x] = grayScale;
-        //         p.pixels[x+1] = grayScale; 
-        //         p.pixels[x+2] = grayScale; 
-        //         p.pixels[x+3] = 1; 
-        //     }
-        // }
-        // p.updatePixels();
-
-
-        /* 
-         * This one draws the canvas, the one above it doesn't!
-         */
-
-        // var fullCanvas = 4 * (p.windowWidth * d) * (p.windowHeight * d);
-        // for (var i = 0; i < fullCanvas; i+=4) {
-        //     var bright = p.color(Math.floor(p.random(255)), Math.floor(p.random(255)), Math.floor(p.random(255)));
-        //     p.pixels[i] = p.red(bright);
-        //     p.pixels[i+1] = p.green(bright);
-        //     p.pixels[i+2] = p.blue(bright);
-        //     p.pixels[i+3] = p.alpha(bright);
-        // }
-        // p.updatePixels();
-
-
-        /*
-         * Successful Line Drawing thingy!
-         */ 
-        // p.draw = function () {
-        
-        //     p.background(255);
-            
-        //     // Two Vectors, one for the mouse location and one for the center of the window
-        //     var mouse  = p.createVector(p.mouseX, p.mouseY);
-        //     var center = p.createVector(p.windowWidth / 2, p.windowHeight / 2);
-            
-        //     // Vector subtraction & multiplication!
-        //     mouse.sub(center);
-        //     // mouse.mult(0.5);
-
-        //     var mag = mouse.mag();
-        //     p.fill(0);
-        //     p.rect(0,0,mag,10);
-            
-        //     // Draw a line to represent the vector.
-        //     p.translate(center.x, center.y);
-        //     p.line(0, 0, mouse.x, mouse.y);
-
-        // }
-
-
 function getBezierPoint ( t ) {
-    // from here: http://math.stackexchange.com/questions/26846/is-there-an-explicit-form-for-cubic-b%C3%A9zier-curves
-    // y = u0(1−x^3) + 3*u1*(1−x^2)*x + 3*u2*(1−x)*x^2 + u3*x^3
-    //        A             B                 C             D  
-    // t = 'time'
+    /* 
+     * This was an idea taken from here:
+     * http://math.stackexchange.com/questions/26846/is-there-an-explicit-form-for-cubic-b%C3%A9zier-curves
+     * 
+     * This is the function: 
+     * y = u0(1−x^3) + 3*u1*(1−x^2)*x + 3*u2*(1−x)*x^2 + u3*x^3
+     *        A             B                 C             D  
+     * 
+     * @param {Number} t - time, or position in easing
+     *
+     */
 
     if (t > 1) {
         t = 1;
@@ -641,17 +666,31 @@ function getBezierPoint ( t ) {
         t = 0;
     }
 
-    var curve = { // ease in curve
-        u0: 0, 
-        u1: 0.05,
-        u2: 0.25,
-        u3: 1
-    }
+    var easeInCurve = { u0: 0, u1: 0.05, u2: 0.25, u3: 1 }
 
-    var A = curve.u0 * (1 - Math.pow(t, 3));
+    var curve = easeInCurve;
+
+    // var A = curve.u0 * (1 - Math.pow(t, 3)) // don't need to do this since u0 = 0
     var B = 3 * curve.u1 * (1 - Math.pow(t, 2)) * t;
     var C = 3 * curve.u2 * (1 - t) * Math.pow(t, 2);
     var D = curve.u3 * Math.pow(t, 3);
 
-    return A + B + C + D;
+    return B + C + D; // + A
+}
+
+
+function getRandomColor () {
+    var r = Math.floor(p.randomGaussian(127,40)) % 255;
+    var g = Math.floor(p.randomGaussian(127,40)) % 255;
+    var b = Math.floor(p.randomGaussian(127,40)) % 255;
+    return p.color(r, g, b);
+}
+
+function curveInAndOut (x) {
+    var z = 4,
+        h = 0.5,
+        j = 2,
+        k = 1
+
+    return -z * Math.pow((x-h), j) + k
 }
