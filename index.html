@@ -17,7 +17,6 @@
     <!-- CSS -->
     <link rel="stylesheet" href="css/vendor/tachyons/css/tachyons.min.css" />
     <link rel="stylesheet" href="css/styles.css" />
-    <!--<link rel="stylesheet" href="css/styles.css">-->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -133,17 +132,22 @@
 
         <!-- Stills -->
         <section id="stills" class="dn h-100 min-h-100vh vh-100 w-100 pb-6rem bodoni black"> <!-- dt -->
-            <div class="dtc v-mid relative">
-                <section id="stillsContainer" class="mw9 center relative">
-                    <section id="imageContainer" class="dt h-100 min-h-21_875rem h-21_875rem-ns min-h-28_125rem-ns h-28_125rem-ns center w-100 w-90-ns pt3-ns relative">
+            <div id="stillsContainer" class="dtc tc v-mid relative mw108rem-ns">
+                <section id="imageCaptionContainer" class="mw9 center relative">
+                    <section id="images" class="dt h-100 min-h-21_875rem h-21_875rem-ns min-h-28_125rem-ns h-28_125rem-ns center w-100 w-90-ns pt3-ns relative">
                         <div class="dtc v-mid">
-                            <div class="dt w-100">
-                                <div id="image1" class="dtc heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">
+                            <div id="imageContainer" class="dt w-100">
+                                <div id="stillsImage" class="dtc heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">
                                     <img class="mw-100 mh-100 w-auto h-auto" src="img/photos/diary/diary1.jpg" alt="">
                                 </div>
-
-                                <div id="image2" class="dn v-mid heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">
+                                <div id="stillsImage" class="dn v-mid heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">
                                     <img class="mw-100 mh-100 w-auto h-auto" src="img/photos/media/media1.jpg" alt="">
+                                </div>
+                                <div id="stillsImage" class="dn v-mid heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">
+                                    <img class="mw-100 mh-100 w-auto h-auto" src="img/photos/media/media2.jpg" alt="">
+                                </div>
+                                <div id="stillsImage" class="dn v-mid heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">
+                                    <img class="mw-100 mh-100 w-auto h-auto" src="img/photos/media/media3.jpg" alt="">
                                 </div>
                             </div>
                         </div>
@@ -151,13 +155,11 @@
                     <p id="caption" class="_captionSeperator relative ml3 center pt4 mt0 mb4 mb0-ns tc w-90 w-30-ns">Fires, fury, absolution.<br>Delusion, fantasy, insincerity.<br>Constants follow us.<br>News breaks us.</p>
                 </section>
 
-                <nav class="absolute-ns z-n1 top-0-ns left-50-ns w-100-m w-80-l mw6 mw108rem-ns translate-n50-ns h-100-ns center pb3 pb0-ns db-ns flex flex-row justify-around items-center">
-                    <div id="mobileCarouselNavigation" class="h-100-ns">
-                        <button class="absolute-ns w-20-ns h-100-ns pb6-ns pr-calc-ns left-0 top-0 f4-ns futura clear-button txtshdw-white bg-transparent b--none"><</button>
-                        <p class="dib dn-ns mt0 mb0">1/61</p>
-                        <button class="absolute-ns w-20-ns h-100-ns pb6-ns pl-calc-ns top-0 right-0 f4-ns futura clear-button txtshdw-white bg-transparent b--none">></button>
-                    </div>
-                </nav>
+                <button id="stills-left" class="dib absolute-ns w-20-ns h-100-ns pb6-ns pr-calc-ns left-0 top-0 f4-ns futura clear-button txtshdw-white bg-transparent b--none"><</button>
+                <p id="stills-indicator" class="dib dn-ns mt0 mb0">1/61</p>
+                <button id="stills-right" class="dib absolute-ns w-20-ns h-100-ns pb6-ns pl-calc-ns top-0 right-0 f4-ns futura clear-button txtshdw-white bg-transparent b--none">></button>
+
+                <!--<nav class="absolute-ns z-n1 top-0-ns left-50-ns w-100-m w-80-l mw6 mw108rem-ns translate-n50-ns h-100-ns center pb3 pb0-ns db-ns flex flex-row justify-around items-center"></nav>-->
             </div>
         </section>
 
@@ -286,8 +288,7 @@
     <script language="javascript" type="text/javascript" src="js/main.js"></script>
     <script language="javascript" type="text/javascript" src="js/page.js"></script>
     <script language="javascript" type="text/javascript" src="js/pageData.js"></script>
-    <!--<script language="javascript" type="text/javascript" src="js/vendor/p5.js"></script>
-    <script language="javascript" type="text/javascript" src="js/sketch.js"></script>-->
+    <script language="javascript" type="text/javascript" src="js/images.js"></script>
 </body>
 
 </html>

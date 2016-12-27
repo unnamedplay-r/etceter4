@@ -4,6 +4,8 @@
  */ 
 
 /**
+ * appendImagesTo
+ * 
  * @summary Appends images to an element 
  * 
  * @param {string} element - html element you're appending to
@@ -18,20 +20,21 @@ function appendImagesTo (element, location, prefix, fileExtension, start, end) {
     var srcContents = location + prefix;
     element = $(element)
     while (start <= end) {
-        element.append('<div class="item">' + 
-                            '<img src="' + srcContents + start + fileExtension + '"/>' + 
-                            '</div>');
+        element.append('<div id="stillsImage" class="dtc heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">' + 
+                            '<img class="mw-100 mh-100 w-auto h-auto" src="' + srcContents + start + fileExtension + '"/>' + 
+                        '</div>');
         start++;
     }
 }
 
 /**
+ * replacePlaceholders
+ * 
  * @summary Replaces the placeholders of any images within a page
  * 
  * @param {string} element - html element to search
  */
 
-// replaces the placeholders of any images on a page
 function replacePlaceholders (element) {
     var images = $(element).find("img[src='img/placeholder.jpg']");
     if (images.length !== 0) {
@@ -43,34 +46,26 @@ function replacePlaceholders (element) {
 }
 
 // Initial Diary Image Loading
-(function(){
-    var target = document.getElementById('diary');
-    var observer = new MutationObserver( function (mutations) {
-        mutations.forEach( function (mutation) {
-            // prevents an error for searching a null value
-            if (mutation.oldValue) {
-                var displayblock = mutation.oldValue.search(/block/g);
-                if (displayblock !== -1 ) {
-                    replacePlaceholders("#diary");
-                    appendImagesTo("#diaryCarouselInner", "img/photos/diary/", "diary", ".jpg", 2, 10);
-                    observer.disconnect();
-                }
-            }
-        });
-    });
 
-    var config = { attributes: true, attributeOldValue: true, attributeFilter: ["style"] }
-    observer.observe(target, config);
-})();
+// (function(){
+//     var target = document.getElementById('diary');
+//     var observer = new MutationObserver( function (mutations) {
+//         mutations.forEach( function (mutation) {
+//             // prevents an error for searching a null value
+//             if (mutation.oldValue) {
+//                 var displayblock = mutation.oldValue.search(/block/g);
+//                 if (displayblock !== -1 ) {
+//                     replacePlaceholders("#diary");
+//                     appendImagesTo("#diaryCarouselInner", "img/photos/diary/", "diary", ".jpg", 2, 10);
+//                     observer.disconnect();
+//                 }
+//             }
+//         });
+//     });
 
-// NAMED PHOTO LAZY LOAD
-// for every image found in an array [specifies order]
-
-// NUMERICAL PHOTO LAZY LOAD
-// for the diary, load 10 images first.
-// for every image we have, append an img tag to the child of that image section
-// once we're on the ith photo, grab the next 10.
-// make sure you don't go past all the images up until a point (conditional check)
+//     var config = { attributes: true, attributeOldValue: true, attributeFilter: ["style"] }
+//     observer.observe(target, config);
+// })();
 
 /**
  * Image Loading listeners
@@ -102,4 +97,42 @@ $('.carousel').on('slid.bs.carousel', function () {
         pages[7].hasAllData = true;
         return;
     }
+});
+
+var Carousel = function () {
+    this.name = "";
+    this.index = 0;
+    this.images = {};
+    this.total = 0;
+}
+
+Carousel.prototype.incIndex = function () {
+    this.index += 1;
+}
+
+Carousel.prototype.decIndex = function () {
+    this.index -= 1;
+}
+
+Carousel.prototype.setIndex = function (n) {
+    this.index = n;
+}
+
+Carousel.prototype.emitSlide = function (n) {
+    $( document ).trigger( "slide", [ "bro", "orb" ] );
+}
+
+var stillsCarousel = new Carousel();
+
+$('#stills-left').on('click', function() {
+    var img = $('#stillsImage.dtc');
+    
+    img.removeClass('dtc').addClass('dn');
+    img.prev().addClass('dtc').removeClass('dn');
+});
+
+$('#stills-right').on('click', function() {
+    var img = $('#stillsImage.dtc');
+    img.removeClass('dtc').addClass('dn');
+    img.next().addClass('dtc').removeClass('dn');
 });
