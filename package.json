@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "description": "home of the soul.",
   "main": "index.html",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
+    "browser-sync": "^2.18.5",
     "eslint": "^3.10.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "browser-sync start --server --files '*.html, css/*.css, js/*.js'"
   },

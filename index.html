@@ -35,64 +35,66 @@
     <main id="pages" class="min-vh-100">
         
         <!-- Landing Page  -->
-        <section id="landingPage" class="flex items-center vh-100 w-100 pb-6rem relative bg-black white" style="display:none;">
+        <section id="landing" class="dn vh-100 w-100 pb-6rem bg-black white">
             <!--<h1 class="dn"> Landing Page </h1>  Used for HTML5 Outline  -->
-            <section class="center tc">
-                <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
-                <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
-                <h1 class="mt0 f1 f-headline-ns normal">ET CETER4</h1>
-                <div class="h-100 w-100">
-                    <a href="#menu" id="enterButton" class="_enterButton dib relative">  </a>
+            <section class="flex items-center h-100 w-100">
+                <div class="center tc">
+                    <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
+                    <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
+                    <h1 class="mt0 f1 f-headline-ns normal">ET CETER4</h1>
+                    <div class="h-100 w-100">
+                        <a href="#menu" id="toMenuPage" class="_enterButton dib relative">  </a>
+                    </div>
                 </div>
             </section>
         </section>
 
         <!-- Main Menu -->
-        <section id="menuPage" class="dn vh-100 w-100 pb-6rem black">
+        <section id="menu" class="dn vh-100 w-100 pb-6rem black">
             <section id="menuPageCanvasWrapper" class="fixed vh-100 w-100 pb-6rem z-n1"></section>
             <section id="menuPageWrapper" class="flex items-center vh-100 w-100 pb-6rem">
                 <section id="menuPageMenu" class="flex flex-column justify-between center tc ba bg-white-50 bw1 b--black pa4">
-                        <div class="tji tji-fix"><a href="#sound" id="toSound" class="db f2 link cyan-link">S O U N D</a></div>
-                        <div class="tji tji-fix"><a href="#words" id="toWords" class="db f2 link tji tji-fix black-link">W O R D S</a></div>
-                        <div class="tji tji-fix"><a href="#vision" id="toVision" class="db f2 link tji tji-fix magenta-link">V I S I O N</a></div>
-                        <div class="tji tji-fix"><a href="#info" id="toInfo" class="db f2 link tji tji-fix yellow-link">I N F O</a></div>
+                        <div class="tji tji-fix"><a href="#sound" id="toSoundPage" class="db f2 link cyan-link">S O U N D</a></div>
+                        <div class="tji tji-fix"><a href="#words" id="toWordsPage" class="db f2 link tji tji-fix black-link">W O R D S</a></div>
+                        <div class="tji tji-fix"><a href="#vision" id="toVisionPage" class="db f2 link tji tji-fix magenta-link">V I S I O N</a></div>
+                        <div class="tji tji-fix"><a href="#info" id="toInfoPage" class="db f2 link tji tji-fix yellow-link">I N F O</a></div>
                 </section>
             </section>
         </section>
 
         <!-- Menu // Words -->
-        <section id="wordsPage" class="dn vh-100 w-100 pb-6rem black">
+        <section id="words" class="dn vh-100 w-100 pb-6rem black">
             <section id="wordsContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
                 <div id="wordsOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
                     <div id="wordsInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
-                        <div><a href="#diary" id="toDiary" class="f3 f-2_250rem-ns link white-link">DIARY</a></div>
-                        <div><a href="#blog" id="toBlog" class="f3 f-2_250rem-ns link cyan-link">BLOG</a></div>
+                        <div><a href="#diary" id="toDiaryPage" class="f3 f-2_250rem-ns link white-link">DIARY</a></div>
+                        <div><a href="#blog" id="toBlogPage" class="f3 f-2_250rem-ns link cyan-link">BLOG</a></div>
                         <div><a href="http://met4morphoses.com" class="f3 f-2_250rem-ns link magenta-link">MET4MORPHOSES</a></div>
-                        <div><a href="#loophole" id="toSound" class="f3 f-2_250rem-ns link yellow-link">LOOPHOLE</a></div>
+                        <div><a href="#loophole" class="f3 f-2_250rem-ns link yellow-link">LOOPHOLE</a></div>
                     </div>
                 </div>
             </section>
         </section>
 
         <!-- Menu // Sight -->
-        <section id="sightPage" class="dn vh-100 w-100 pb-6rem black">
-            <section id="sightContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
-                <div id="sightOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
-                    <div id="sightInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
-                        <div><a href="#video" id="toVideo" class="f3 f-2_250rem-ns link white-link">VIDEO</a></div>
+        <section id="vision" class="dn vh-100 w-100 pb-6rem black">
+            <section id="visionContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
+                <div id="visionOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
+                    <div id="visionInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
+                        <div><a href="#video" id="toVideoPage" class="f3 f-2_250rem-ns link white-link">VIDEO</a></div>
                         <div><a href="#ogod" id="toOGOD" class="f3 f-2_250rem-ns link cyan-link">OGOD</a></div>
-                        <div><a href="#still" id="toStill" class="f3 f-2_250rem-ns link magenta-link">STILL</a></div>
+                        <div><a href="#stills" id="toStillsPage" class="f3 f-2_250rem-ns link magenta-link">STILL</a></div>
                     </div>
                 </div>
             </section>
         </section>
 
         <!-- Sound -->
-        <section id="soundPage" class="dn h-100 w-100 pb-6rem black">
+        <section id="sound" class="dn h-100 w-100 pb-6rem black">
             <section id="soundContainer" class="flex justify-center items-center flex-wrap flex-row w-90 w-100-ns mw9-ns center">
                 <section id="OneGameOneDay" class="w-18_750rem shadedow ma4">
                     <div id="BCContainer" class="h-18_750rem">
-                        <iframe style="border: 0; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=3780915385/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/ogod">OGOD by ET CETER4</a></iframe> 
+                        <!--<iframe style="border: 0; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=3780915385/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/ogod">OGOD by ET CETER4</a></iframe> -->
                     </div>
                     <div id="textContainer" class="pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">OGOD // 2015</p>
@@ -102,7 +104,7 @@
 
                 <section id="RMXS" class="w-18_750rem shadedow ma4">
                     <div id="BCContainer" class="h-18_750rem">
-                        <iframe style="border: 0; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=604244064/size=large/bgcol=ffffff/linkcol=333333/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/et-ceter4-rmxs">ET CETER4 RMXS by ET CETER4</a></iframe>
+                        <!--<iframe style="border: 0; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=604244064/size=large/bgcol=ffffff/linkcol=333333/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/et-ceter4-rmxs">ET CETER4 RMXS by ET CETER4</a></iframe>-->
                     </div>
                     <div id="textContainer" class="pt4 h-6_250rem tc relative">
                         <p class="mt3 mb1">RMXS // 20XX</p>
@@ -111,7 +113,7 @@
 
                 <section id="ProgressionOfDigression" class="w-18_750rem shadedow ma4">
                     <div id="BCContainer" class="h-18_750rem">
-                        <iframe style="border: 10px; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=489900059/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/the-progression-of-digression">ProgressionDigression by ET CETER4</a></iframe>
+                        <!--<iframe style="border: 10px; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=489900059/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/the-progression-of-digression">ProgressionDigression by ET CETER4</a></iframe>-->
                     </div>
                     <div id="textContainer" class="pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">PROGRESSION OF DIGRESSION<br>// 2012</p>
@@ -120,7 +122,7 @@
 
                 <section id="Etcetera" class="w-18_750rem shadedow ma4">
                     <div id="BCContainer" class="h-18_750rem">
-                        <iframe style="border: 10px; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=448587485/size=large/bgcol=ffffff/linkcol=de270f/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/etc">Etc by ET CETER4</a></iframe>
+                        <!--<iframe style="border: 10px; width: 300px; height: 300px;" src="http://bandcamp.com/EmbeddedPlayer/album=448587485/size=large/bgcol=ffffff/linkcol=de270f/minimal=true/transparent=true/"><a href="http://music.etceter4.com/album/etc">Etc by ET CETER4</a></iframe>-->
                     </div>
                     <div id="textContainer" class="pt4 h-6_250rem tc relative">
                         <p class="mt3 mb1">ETCETERA // 2011</p>
@@ -130,8 +132,7 @@
         </section>
 
         <!-- Stills -->
-        <section id="stillsPage" class="dt h-100 min-h-100vh vh-100 w-100 pb-6rem bodoni black">
-
+        <section id="stills" class="dn h-100 min-h-100vh vh-100 w-100 pb-6rem bodoni black"> <!-- dt -->
             <div class="dtc v-mid relative">
                 <section id="stillsContainer" class="mw9 center relative">
                     <section id="imageContainer" class="dt h-100 min-h-21_875rem h-21_875rem-ns min-h-28_125rem-ns h-28_125rem-ns center w-100 w-90-ns pt3-ns relative">
@@ -160,6 +161,46 @@
             </div>
         </section>
 
+        <!-- Blog -->
+        <section id="blog" class="dn h-100 w-100 pb-6rem black">
+            <div class="center mw7 mt4 ">
+                <div id="blogPiece" class="center mw7 mb4">
+                    <h1 class="f1 tc measure-wide fw1 mt0 mb1 w-100">made some funny changes</h1>
+                    <h2 class="bodoni tc f5 mt0 mb1 w-100">0 8. 0 2 . 2 0 1 6</h2>
+                    <p class="center bodoni mt0 measure-wide">
+                        added a skeleton key (site map) to ze bottom of ze pg (rite down in the fotter eh) herrr herr herr <br> also
+                        have added <a href="OGOD.html" target="_blank" class="class02e"> OGOD visual experience</a> // each page is a
+                        different song, there is 29 of em.... <br> been feeling better of late. been also telling myself to stop controlling
+                        my moods with narcotics and substances for manymany years. im okay tho. keep busy. keep at/keepitawy. been trying
+                        to decide whether or not depression has been the best/worst exponent of me equation..for sooooo long.
+                    </p>
+                </div>
+                <hr>
+                <div id="blogPiece" class="center mw7 mt4 mb4">
+                    <h1 class="f1 tc measure-wide fw1 mt0 mb1 w-100">hello hello hello 4g4in</h1>
+                    <h2 class="bodoni tc f5 mt0 mb1 w-100">0 7 . 1 8 . 2 0 1 6</h2>
+                    <p class="center bodoni mt0 measure-wide">
+                        i hope you found your way here alright, please stay awhile. take of your scarfs and hats, its warm outside. cant stop sweating.
+                        i dont pay the bulls tho.<br> think im finishing the site. wwell er finishing it enouhg that is.
+                        enough to not be entirely ashamed about. wellanyway,.<br> i hope you take the time to explore this website. there
+                        has been a lot of work put into the softwear. there are a of doors to explore and navigate. there is a narrative
+                        that will continue to grow. i hope you enjoy it.
+                        <br> my musix is coming along nicely. its been cocooned long neough, thats for sure. so its just some artwork
+                        that needs to be tkn care of. some free stuff to give out.
+                    </p>
+                </div>
+                    <hr>
+                <div id="blogPiece" class="center mw7 mt4 mb4">
+                    <h1 class="f1 tc measure-wide fw1 mt0 mb1 w-100">Something percussive this way comes...</h1>
+                    <h2 class="bodoni tc f5 mt0 mb1 w-100">0 7 . 1 5 . 2 0 1 6</h2>
+                    <p class="center bodoni mt0 measure-wide">
+                        have a few tracks (some say 5 tracks, some may say an EP) that have been kicking around for over a year. making grooves and
+                        moves to get those out quite soon.
+                    </p>
+                </div>
+            </div>
+        </section>
+
 
 
     </main>
@@ -171,13 +212,13 @@
             <span class="_etcDashedLine">/////////////////////</span>
         </div>
         <ul class="list pl0 mt4 mb0 f-1_250rem">
-            <li class="mb3"><a>SUPPORT US</a></li>
-            <li class="mb3"><a>SITE MAP</a></li>
-            <li class="mb3"><a>MAILING LIST</a></li>
-            <li class="mb3"><a>FACEBOOK</a></li>
-            <li class="mb3"><a>TWITTER</a></li>
-            <li class="mb3"><a>INSTAGRAM</a></li>
-            <li><a>YOUTUBE</a></li>
+            <li class="mb3"><a class="link white-link">SUPPORT US</a></li>
+            <li class="mb3"><a class="link white-link">SITE MAP</a></li>
+            <li class="mb3"><a class="link white-link">MAILING LIST</a></li>
+            <li class="mb3"><a class="link white-link">FACEBOOK</a></li>
+            <li class="mb3"><a class="link white-link">TWITTER</a></li>
+            <li class="mb3"><a class="link white-link">INSTAGRAM</a></li>
+            <li><a class="link white-link">YOUTUBE</a></li>
         </ul>
     </section>
     
@@ -189,7 +230,7 @@
         <nav class="flex flex-row flex-wrap justify-around items-center page-wrap center h-100">
             <!-- Back Button -->
             <section id="backButtonContainer" class="backButtonContainer mw2 tc">
-                <a href="#" class="white f-2_0625rem link">&#8629;</a>
+                <a id="backButton" href="#" class="white-link f-2_0625rem link">&#8629;</a>
             </section>
 
             <!-- Audio Player -->
@@ -205,11 +246,11 @@
 
             <!-- Support Us / Site Map / Mailing List -->
             <section id="subscribe" class="dn flex-ns flex-row flex-wrap justify-around items-center min-w-15rem mw6 w-34 h-100 f-1_125rem white">
-                <a class="link" href="https://etceter4.bandcamp.com" target="_blank">SUPPORT US</a>
+                <a class="link white-link" href="https://etceter4.bandcamp.com" target="_blank">SUPPORT US</a>
                 <p class="ma0 di">//</p>
-                <a id="mapToMapButton" class="link" href="#sitemap" target="_self">SITE MAP</a>
+                <a id="mapToMapButton" class="link white-link" href="#sitemap" target="_self">SITE MAP</a>
                 <p class="ma0 di">//</p>
-                <a class="link" href="http://eepurl.com/bPQueX" target="_blank">MAILING LIST</a>
+                <a class="link white-link" href="http://eepurl.com/bPQueX" target="_blank">MAILING LIST</a>
             </section>
 
             <!-- Social Sharing -->
@@ -238,61 +279,15 @@
     </footer>
 
     <!-- JS Requests -->
-    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.3.1/velocity.min.js"></script>
-    <script language="javascript" type="text/javascript" src="js/vendor/p5.js"></script>
-    <script language="javascript" type="text/javascript" src="js/sketch.js"></script>
-
-
-    <script>
-
-        /* 
-         * Mobile Menu Button 
-         */
-        $(".c-hamburger").on("click", function() {
-            var hamburgerMenu = $(".c-hamburger");
-            var mobileMenu = $(".mobileMenu");
-
-            if (hamburgerMenu.hasClass("is-active")) {
-                hamburgerMenu.removeClass("is-active");
-                mobileMenu.removeClass("open");
-            } else {
-                hamburgerMenu.addClass("is-active");
-                mobileMenu.addClass("open");
-            }
-        })
-
-        // Array.some() polyfill
-        // Production steps of ECMA-262, Edition 5, 15.4.4.17
-        // Reference: http://es5.github.io/#x15.4.4.17
-        if (!Array.prototype.some) {
-        Array.prototype.some = function(fun/*, thisArg*/) {
-            'use strict';
-
-            if (this == null) {
-            throw new TypeError('Array.prototype.some called on null or undefined');
-            }
-
-            if (typeof fun !== 'function') {
-            throw new TypeError();
-            }
-
-            var t = Object(this);
-            var len = t.length >>> 0;
-
-            var thisArg = arguments.length >= 2 ? arguments[1] : void 0;
-            for (var i = 0; i < len; i++) {
-            if (i in t && fun.call(thisArg, t[i], i, t)) {
-                return true;
-            }
-            }
-
-            return false;
-        };
-        }
-    </script>
-
+    <script language="javascript" type="text/javascript" src="js/main.js"></script>
+    <script language="javascript" type="text/javascript" src="js/page.js"></script>
+    <script language="javascript" type="text/javascript" src="js/pageData.js"></script>
+    <!--<script language="javascript" type="text/javascript" src="js/vendor/p5.js"></script>
+    <script language="javascript" type="text/javascript" src="js/sketch.js"></script>-->
 </body>
 
 </html>

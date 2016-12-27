@@ -18,6 +18,10 @@ $(window).resize(function () {
     // $("#pages").css("height", windowHeight - headerHeight - footerHeight + "px");
 });
 
+//////
+//////
+//////
+
 /*
  * Changes the Header colors
  * @param {string} bgColor - a color that will be applied to the element
@@ -55,3 +59,30 @@ function changeHeader(bgColor, fontColor, aClass) {
  */
 
 // changeHeader("blue", "red", "class2c"); // test
+ 
+//////
+//////
+//////
+
+/**
+ * Changes the footer style
+ * 
+ * @param a color that will be applied to the element
+ * @param {string} aClass - a HTML element, class, or id.
+ * @returns {boolean} true if successful
+ * 
+ */
+
+function changeFooter(bgColor, fillColor, fontColor, aClass) {
+    var footer = $("footer");
+    footer.css("background-color", bgColor);
+    footer.find("#backButton").css("color", fillColor);
+    footer.find("svg").css("fill", fillColor);
+
+    var aChildren = $("footer").find("a");
+    aChildren.css("color", fontColor);
+    aChildren.removeClass();
+    aChildren.addClass(aClass);
+
+    return true;
+}

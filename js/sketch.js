@@ -4,21 +4,14 @@ var myp5;
 var visionImage;
 var footerHeight = $('footer').css('height').replace('px', '');
 
-$(document).ready(function () {
-    // find the storage
-    visionImage = document.getElementById("imageStorage");
-    
-    // load image for vision canvas & save it der
-    visionImage.src = 'img/photos/glitchpr0n/glitch26.png';
-});
-
 /*
  * 
  * The listeners for the canvas change
  * 
  */
 
-$('#toWords').mouseenter( function () {
+$('#toWordsPage').mouseenter( function () {
+    console.log("hey");
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
     } 
@@ -34,7 +27,7 @@ $('#toWords').mouseenter( function () {
     }
 });
 
-$('#toSound').mouseenter( function() {
+$('#toSoundPage').mouseenter( function() {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
     } 
@@ -50,7 +43,7 @@ $('#toSound').mouseenter( function() {
     }
 });
 
-$('#toVision').mouseenter( function() {
+$('#menu #toVisionPage').mouseenter( function() {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
     }
@@ -66,7 +59,7 @@ $('#toVision').mouseenter( function() {
     }
 });
 
-$('#toInfo').mouseenter( function() {
+$('#menu #toInfoPage').mouseenter( function() {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
     }
@@ -80,6 +73,15 @@ $('#toInfo').mouseenter( function() {
         myp5 = new p5( infoCanvas, 'menuPageCanvasWrapper' );
         myp5.id = 'info';
     }
+});
+
+// for vision canvas
+$(document).ready(function () {
+    // find the storage
+    visionImage = document.getElementById("imageStorage");
+    
+    // load image for vision canvas & save it der
+    visionImage.src = 'img/photos/glitchpr0n/glitch26.png';
 });
 
 /*

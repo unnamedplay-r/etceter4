@@ -50,6 +50,13 @@
     -webkit-margin-end: 0px;
 }
 
+.hz-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /*
 
     Fonts
@@ -131,7 +138,7 @@
     
 */
 
-a:link {
+/*a:link {
     color: white;
     background-color: transparent;
 }
@@ -157,37 +164,37 @@ a:active {
 
 a:focus {
     outline: none;
-}
+}*/
 
-.white-link:link       { color: white; background-color: transparent; }
-.white-link:visited    { color: white; background-color: transparent; }
-.white-link:hover      { color: white; background-color: white; }
-.white-link:active     { color: white; background-color: transparent; }
+.white-link:link      { color: white; background-color: transparent; }
+.white-link:visited   { color: white; background-color: transparent; text-decoration: none; }
+.white-link:hover     { color: white; background-color: white;     text-decoration: line-through; }
+.white-link:active    { color: white; background-color: transparent; text-decoration: line-through; }
 
 .cyan-link:link       { color: cyan; background-color: transparent; }
-.cyan-link:visited    { color: cyan; background-color: transparent; }
-.cyan-link:hover      { color: cyan; background-color: cyan; }
-.cyan-link:active     { color: cyan; background-color: transparent; }
+.cyan-link:visited    { color: cyan; background-color: transparent; text-decoration: none; }
+.cyan-link:hover      { color: cyan; background-color: cyan;      text-decoration: line-through; }
+.cyan-link:active     { color: cyan; background-color: transparent; text-decoration: line-through; }
 
 .black-link:link      { color: black; background-color: transparent; }
-.black-link:visited   { color: black; background-color: transparent; }
-.black-link:hover     { color: black; background-color: black; }
-.black-link:active    { color: black; background-color: transparent; }
+.black-link:visited   { color: black; background-color: transparent; text-decoration: none; }
+.black-link:hover     { color: black; background-color: black;     text-decoration: line-through; }
+.black-link:active    { color: black; background-color: transparent; text-decoration: line-through; }
 
 .magenta-link:link    { color: magenta; background-color: transparent; }
-.magenta-link:visited { color: magenta; background-color: transparent; }
-.magenta-link:hover   { color: magenta; background-color: magenta; }
-.magenta-link:active  { color: magenta; background-color: transparent; }
+.magenta-link:visited { color: magenta; background-color: transparent; text-decoration: none; }
+.magenta-link:hover   { color: magenta; background-color: magenta;   text-decoration: line-through; }
+.magenta-link:active  { color: magenta; background-color: transparent; text-decoration: line-through; }
 
-.yellow-link:link    { color: yellow; background-color: transparent; }
-.yellow-link:visited { color: yellow; background-color: transparent; }
-.yellow-link:hover   { color: yellow; background-color: yellow; }
-.yellow-link:active  { color: yellow; background-color: transparent; }
+.yellow-link:link     { color: yellow; background-color: transparent; }
+.yellow-link:visited  { color: yellow; background-color: transparent; text-decoration: none; }
+.yellow-link:hover    { color: yellow; background-color: yellow;    text-decoration: line-through; }
+.yellow-link:active   { color: yellow; background-color: transparent; text-decoration: line-through; }
 
-.red-link:link    { color: red; background-color: transparent; }
-.red-link:visited { color: red; background-color: transparent; }
-.red-link:hover   { color: red; background-color: red; }
-.red-link:active  { color: red; background-color: transparent; }
+.red-link:link        { color: red; background-color: transparent; }
+.red-link:visited     { color: red; background-color: transparent; text-decoration: none; }
+.red-link:hover       { color: red; background-color: red;       text-decoration: line-through; }
+.red-link:active      { color: red; background-color: transparent; text-decoration: line-through; }
 
 
 .clear-button:focus { outline: none; }
@@ -201,13 +208,6 @@ a:focus {
     The Landing Page
 
 */
-
-.backgroundCanvas {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
 
 @keyframes pulseA {
     0%   { transform: scale(1,1); }
@@ -225,9 +225,8 @@ a:focus {
     100% { transform: scale(1,1);     opacity: 1; }
 }
 
-#enterButton {
-    /*background: white;*/
-    background-color: rgba(255, 255, 255, 1);
+._enterButton {
+    background-color: white;
     height: 24px; 
     width: 24px;
     border-radius: 60px;
@@ -235,7 +234,13 @@ a:focus {
     border: 1px white;
 }
 
-#enterButton:hover{
+._enterButton:visited,
+._enterButton:active,
+._enterButton:focus {
+    background-color: white;
+}
+
+._enterButton:hover {
     background-color: cyan;
     transform: scale(1,1);
 }
@@ -247,15 +252,12 @@ a:focus {
     content: "";
     left: -7.5px;
     top: -7.5px;
-    /*top: 50%;
-    left: 50%;*/
     transform-origin: center;
-    /*transform: translate(-50%, -50%);*/
     width: 36px;                
     height: 36px;                
     border-radius: 60px;
     border: 1px solid white;
-    animation-delay: 2s;
+    animation-delay: 0.5s;
 }
 ._enterButton:before {
     animation-name: pulseA;
