@@ -2,6 +2,9 @@
   "name": "etceter4",
   "version": "1.0.0",
   "description": "home of the soul.",
+  "engines": { 
+    "npm" : "~1.0.20"
+  },
   "main": "index.html",
   "dependencies": {},
   "devDependencies": {
