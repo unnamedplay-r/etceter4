@@ -48,7 +48,16 @@ pages.sound = new Page ({
     }
 })
 
-var pages = [pages.menu, pages.sound, new Page({
+pages.stills = new Page ({
+    "id": "#stills",
+    "tier": 4,
+    "upLinks": ["#vision"],
+    "initialize": function () {
+        replacePlaceholders(this.id);      
+    }
+})
+
+var pages = [pages.menu, pages.sound, pages.stills, new Page({
     "id": _pID.landing,
     "tier": 1,
     "downLinks": [_pID.menu],
@@ -73,10 +82,6 @@ var pages = [pages.menu, pages.sound, new Page({
     "id": "#video",
     "tier": 4,
     "upLinks": ["#sight"],
-}), new Page ({
-    "id": "#stills",
-    "tier": 4,
-    "upLinks": ["#vision"],
 })]
 
 // taken from here: https://api.jquery.com/jquery.getscript/
