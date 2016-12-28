@@ -178,3 +178,5 @@ $('#stills-right').on('click', function() {
 $("#stills").on("carousel:slide", function(event, arg1, arg2) {
     console.log(arg1 + " " + arg2);
 })
+
+console.log('blah');
