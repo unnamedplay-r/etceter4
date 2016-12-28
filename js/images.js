@@ -74,7 +74,7 @@ function replacePlaceholders (element) {
  */
 $('.carousel').on('slid.bs.carousel', function () {
     // tie this event to a custom event so you can turn it off after it's done
-    // this might help if you apply it to the carosel event https://learn.jquery.com/events/introduction-to-custom-events/
+    // this might help if you apply it to the carousel event https://learn.jquery.com/events/introduction-to-custom-events/
     // $( document ).trigger( "myCustomEvent", [ "bim", "baz" ] );
 
     if (pages[7].hasAllData === true) {
@@ -99,40 +99,82 @@ $('.carousel').on('slid.bs.carousel', function () {
     }
 });
 
-var Carousel = function () {
-    this.name = "";
-    this.index = 0;
-    this.images = {};
-    this.total = 0;
+function Carousel ( _c ) {
+    this.id = _c.id || "";
+    this.index = _c.index || 0;
+    this.images = _c.images || {};
+    this.total = _c.total || 0;
 }
 
 Carousel.prototype.incIndex = function () {
-    this.index += 1;
+    var _index = this.index + 1;
+    if (_index > this.total - 1 ) {
+        this.setIndex(0);
+    } else {
+        this.index = _index;
+    }
 }
 
 Carousel.prototype.decIndex = function () {
-    this.index -= 1;
+    var _index = this.index - 1;
+    if (_index < 0 ) {
+        this.setIndex(this.total - 1)
+    } else {
+        this.index = _index;
+    }
 }
 
 Carousel.prototype.setIndex = function (n) {
     this.index = n;
 }
 
-Carousel.prototype.emitSlide = function (n) {
-    $( document ).trigger( "slide", [ "bro", "orb" ] );
+Carousel.prototype.updateTotal = function () {
+    this.total = $('[id*=stillsImage]').length;
 }
 
-var stillsCarousel = new Carousel();
+// when this is emitted, the Carousel has began to slide into a new image
+Carousel.prototype.emitSlide = function () {
+    $( this.id ).trigger( "carousel:slide", [this.index, this.total] );
+}
+
+var stillsCarousel = new Carousel({
+    "id": "#stills",
+    "images": {
+        "faster": 28,
+        "live": 5,
+        "media": 44,
+        "slip":6
+    },
+    "total": $('[id*=stillsImage]').length
+});
 
 $('#stills-left').on('click', function() {
     var img = $('#stillsImage.dtc');
-    
     img.removeClass('dtc').addClass('dn');
-    img.prev().addClass('dtc').removeClass('dn');
+    if (stillsCarousel.index > 0) {
+        img.prev().addClass('dtc').removeClass('dn');
+        stillsCarousel.decIndex();
+    } else {
+        $('[id*=stillsImage]').last().addClass('dtc').removeClass('dn');
+        stillsCarousel.decIndex();
+    }
+    stillsCarousel.emitSlide();
 });
 
 $('#stills-right').on('click', function() {
     var img = $('#stillsImage.dtc');
     img.removeClass('dtc').addClass('dn');
-    img.next().addClass('dtc').removeClass('dn');
+    if (stillsCarousel.index < stillsCarousel.total - 1) {
+        img.next().addClass('dtc').removeClass('dn');
+        stillsCarousel.incIndex();
+    } else {
+        $('[id*=stillsImage]').first().addClass('dtc').removeClass('dn');
+        stillsCarousel.incIndex();
+    }
+    stillsCarousel.emitSlide();
 });
+
+// prep for loading in images
+$("#stills").on("carousel:slide", function(event, arg1, arg2) {
+    console.log(arg1 + " " + arg2);
+})
