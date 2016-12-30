@@ -21,7 +21,7 @@ function appendImagesTo (element, location, prefix, fileExtension, start, end) {
     element = $(element)
     while (start <= end) {
         element.append('<div id="stillsImage" class="dn v-mid heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">' + 
-                            '<img class="mw-100 mh-100 w-auto h-auto" src="' + srcContents + start + fileExtension + '"/>' + 
+                            '<img class="mw-100 mh-100 w-auto h-auto anim anim-easeout" src="' + srcContents + start + fileExtension + '"/>' + 
                         '</div>');
         start++;
     }
@@ -94,8 +94,15 @@ Carousel.prototype.loadCaption = function (img) {
     var match = regExp.exec(_img);
     var name = match[1];
     var num = match[2];
+    var caption = stillsData[name][num];
 
-    this.caption.html(stillsData[name][num]);
+    console.log(name + " " + num);
+    console.log(stillsData[name][num]);
+    if (caption !== undefined) {
+        this.caption.html(caption);
+    } else {
+        this.caption.html('');
+    }
 }
 
 Carousel.prototype.setIndicator = function () {
@@ -208,9 +215,11 @@ $('#stills-left').on('click', function() {
     if (_tmpIndex !== 0) {
         loadingImage = img.prev();
         loadingImage.addClass('dtc').removeClass('dn');
+        loadingImage.children().addClass('anim-fadeIn');
     } else {
         loadingImage = $('[id*=stillsImage]').last();
         loadingImage.addClass('dtc').removeClass('dn');
+        loadingImage.children().addClass('anim-fadeIn');
     }
     sC.loadCaption(loadingImage);
 });
@@ -229,9 +238,11 @@ $('#stills-right').on('click', function() {
     if (_tmpIndex < sC.total) {
         loadingImage = img.next()
         loadingImage.addClass('dtc').removeClass('dn');
+        loadingImage.children().addClass('anim-fadeIn');
     } else {
         loadingImage = $('[id*=stillsImage]').first()
         loadingImage.addClass('dtc').removeClass('dn');
+        loadingImage.children().addClass('anim-fadeIn');
     }
     sC.loadCaption(loadingImage);
 });
