@@ -20,7 +20,7 @@ function appendImagesTo (element, location, prefix, fileExtension, start, end) {
     var srcContents = location + prefix;
     element = $(element)
     while (start <= end) {
-        element.append('<div id="stillsImage" class="dn v-mid heightControl min-h-21_875rem min-h-28_125rem-ns tc h-100">' + 
+        element.append('<div id="stillsImage" class="dn v-mid heightControl-stills min-h-21_875rem min-h-28_125rem-ns tc h-100">' + 
                             '<img class="mw-100 mh-100 w-auto h-auto anim anim-easeout" src="' + srcContents + start + fileExtension + '"/>' + 
                         '</div>');
         start++;
@@ -138,7 +138,7 @@ Carousel.prototype.emitSlide = function (dir) {
 
 var stillsCarousel = new Carousel({
     "id": "#stills",
-    "images": [["media", 44], ["live", 5], ["faster", 28], ["slip", 6]],
+    "images": [["media", 44], ["faster", 28], ["slip", 6], ["live", 5]],
     "total": 44 + 5 + 28 + 6,
     "indexLoadLeft": $('[id*=stillsImage]').length,
     "loadOffset": 4,

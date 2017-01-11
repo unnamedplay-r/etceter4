@@ -15,7 +15,8 @@ var _pID = {
     "stills": "#stills",
     "info": "#info"
 }
-pages = []
+
+var pages = [];
 
 pages.menu = new Page ({
     "id": _pID.menu,
@@ -27,7 +28,7 @@ pages.menu = new Page ({
         $.cachedScript( "js/vendor/p5.js" ).done(function( script, textStatus ) {});
         $.cachedScript( "js/sketch.js" ).done(function( script, textStatus ) {});
     }
-})
+});
 
 pages.sound = new Page ({
     "id": _pID.sound,
@@ -46,18 +47,32 @@ pages.sound = new Page ({
             $(this).html(_iFrames[index]);
         });
     }
-})
+});
 
 pages.stills = new Page ({
-    "id": "#stills",
+    "id": _pID.stills,
     "tier": 4,
     "upLinks": ["#vision"],
     "initialize": function () {
         replacePlaceholders(this.id);      
     }
-})
+});
 
-var pages = [pages.menu, pages.sound, pages.stills, new Page({
+pages.diary = new Page ({
+    "id": _pID.diary,
+    "tier": 4,
+    "upLinks": ["#words"],
+    "initialize": function () {
+        replacePlaceholders(this.id);
+    }
+});
+
+pages.info = new Page({
+    "id": _pID.info,
+    "upLinks": [_pID.menu]
+});
+
+pages = [pages.menu, pages.sound, pages.stills, pages.diary, pages.info, new Page({
     "id": _pID.landing,
     "tier": 1,
     "downLinks": [_pID.menu],
@@ -71,15 +86,11 @@ var pages = [pages.menu, pages.sound, pages.stills, new Page({
     "downLinks": ["#diary", "#blog"],
     "upLinks": ["#menu"],
 }), new Page ({
-    "id": "#blog",
+    "id": _pID.blog,
     "tier": 4,
     "upLinks": ["#words"],
 }), new Page ({
-    "id": "#diary",
-    "tier": 4,
-    "upLinks": ["#words"],
-}), new Page ({
-    "id": "#video",
+    "id": _pID.video,
     "tier": 4,
     "upLinks": ["#sight"],
 })]

@@ -17,7 +17,7 @@ $(document).ready(function () {
         var _hash = $(hash);
 
         _hash.removeClass("dn");
-        if (hash === "#stills") { 
+        if (hash === "#stills" || hash === "#diary" ) { 
             _hash.addClass("dt");
         }
         currentPage = Page.findPage(hash);

@@ -134,7 +134,7 @@ function fadeInPage (_Page, _cb) {
     if (_Page.isLoading === false) {
         // make sure opacity is 0 & then the object is there
         $(_Page.id).css("opacity", 0);
-        if (_Page.id === "#stills") { _display = "table"; }
+        if (_Page.id === "#stills" || _Page.id === "#diary") { _display = "table"; }
 
         // fade in next section
         $(_Page.id).velocity("fadeIn", {

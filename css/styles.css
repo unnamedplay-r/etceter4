@@ -91,6 +91,7 @@
 .mw108rem { max-width: 108rem; }
 
 .mh-100 { max-height: 100%; }
+.mh-100rem { max-height: 100rem; }
 .min-h-100vh { min-height: 100vh; }
 .min-h-21_875rem { min-height: 21.875rem; } /* 350px */
 .min-h-28_125rem { min-height: 28.125rem; } /* 450px */
@@ -101,9 +102,13 @@
 .h-28_125rem { min-height: 28.125rem; } /* 450px */
 .h-30rem { height: 30rem; } /* 480px */
 
+.vh-85 { height: 85vh; }
+
+
 @media only screen and (min-width: 46.875em) {
     .min-w-23rem-ns { min-width: 23rem; }
     
+    .mh-100rem-ns { max-height: 100rem; }
     .min-h-21_875rem-ns { min-height: 21.875rem; } /* 350px */
     .min-h-28_125rem-ns { min-height: 28.125rem; } /* 450px */
 
@@ -112,6 +117,8 @@
     .h-30rem-ns { height: 30rem; }
 
     .mw108rem-ns { max-width: 108rem; }
+
+    .vh-85-ns { height: 85vh; }
 }
 
 
@@ -124,12 +131,14 @@
 .f-1_125rem  { font-size: 1.125rem; } /* 18px */
 .f-1_250rem  { font-size: 1.250rem; } /* 20px */
 .f-2_0625rem { font-size: 2.0625rem;} /* 33px */
+.f-2_125rem  { font-size: 2.125rem; } /* 34px */
 .f-2_250rem  { font-size: 2.250rem; } /* 36px */
 
 @media screen and (min-width: 46.875em) {
     .f-1_125rem-ns  { font-size: 1.125rem; } /* 18px */
     .f-1_250rem-ns  { font-size: 1.250rem; } /* 20px */
     .f-2_0625rem-ns { font-size: 2.0625rem;} /* 33px */
+    .f-2_125rem-ns  { font-size: 2.125rem; } /* 34px */
     .f-2_250rem-ns  { font-size: 2.250rem; } /* 36px */
 }
 
@@ -337,9 +346,14 @@
     background-color: #989898;
 }
 
-.heightControl {
-    height: calc(100vh - 300px);
-}
+.heightControl-stills { height: calc(100vh - 300px); }
+
+/*
+
+    Diary
+
+*/
+.heightControl-diary { height: calc(100vh - 7rem); }
 
 /*
 

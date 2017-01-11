@@ -10,8 +10,7 @@ var footerHeight = $('footer').css('height').replace('px', '');
  * 
  */
 
-$('#toWordsPage').mouseenter( function () {
-    console.log("hey");
+$('#menu #toWordsPage').mouseenter( function () {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
     } 
@@ -27,7 +26,7 @@ $('#toWordsPage').mouseenter( function () {
     }
 });
 
-$('#toSoundPage').mouseenter( function() {
+$('#menu #toSoundPage').mouseenter( function() {
     if ($('#menuPageCanvasWrapper canvas').is("#defaultCanvas1")) {
         removeCanvas();
     } 
@@ -251,7 +250,7 @@ var wordsCanvas = function( p ) {
         'personality', 'stakeholder',   'budget',
         'pain',        'depression',    'hate',
         'constant',    'repetition',    'space'
-    ]
+    ];
 
     function Word ( text ) {
             this.bezierTime = p.random();
