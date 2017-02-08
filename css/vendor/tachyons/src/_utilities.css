@@ -58,3 +58,11 @@
   margin-right: auto;
   margin-left: auto;
 }
+
+
+@media (--breakpoint-not-small) {
+  .center-ns {
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
