@@ -34,6 +34,10 @@
 .z-n1 { z-index: -1; }
 .left-50 { left: 50%; }
 .left-n50 { left: -50%; }
+.top-0 { top: 0; }
+.top-50 { top: 50%; }
+.top-n50 { top: -50%; }
+.top-6rem { top: 6rem; }
 .bg-transparent { background: transparent; }
 .translate-n50 { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
 
@@ -55,6 +59,7 @@
     .left-50-ns { left: 50%; }
     .left-n50-ns { left: -50%; }
     .translate-n50-ns { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+    .top-0-ns { top:0; }
 }
 
 /*
@@ -87,8 +92,12 @@
 */
 
 .min-w-15rem { min-width: 15rem; } /* 240px */
+
 .w-18_750rem { width: 18.750rem; } /* 300px */
+.w-20rem { width: 20rem; } /* 320px */
+
 .mw108rem { max-width: 108rem; }
+.mw62_500rem { max-width: 62.5rem; }
 
 .mh-100 { max-height: 100%; }
 .mh-100rem { max-height: 100rem; }
@@ -105,8 +114,11 @@
 .vh-85 { height: 85vh; }
 
 
+/* Not Small */
 @media only screen and (min-width: 46.875em) {
     .min-w-23rem-ns { min-width: 23rem; }
+
+    w-20rem-ns { width: 20rem; }
     
     .mh-100rem-ns { max-height: 100rem; }
     .min-h-21_875rem-ns { min-height: 21.875rem; } /* 350px */
@@ -398,6 +410,64 @@
 
 /*
 
+    Ad
+
+*/
+
+.hide-top {
+    position: fixed; /* prevents scrolling when the element isn't in focus */
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-100%); /* puts the elements on below the content so it can slide up */   
+    transition: all .3s ease-in-out;
+}
+
+.ad-container {
+    height: 500px;
+    max-width: 62.5rem;
+    top: 0rem;
+}
+
+.ad-img {
+    max-width: 420px;
+    max-height: 420px;
+}
+
+.ad-button-container {
+    width: 23rem;
+}
+
+.ad-button {
+    width: 137px;
+}
+
+/* Not Small */
+@media screen and (min-width: 46.875em) {
+    .ad-container-ns {
+        margin: auto;
+        top: -6rem;
+    }
+
+    .ad-img-ns {
+        max-width: 500px;
+        max-height: 500px;
+    }
+
+    .ad-img-container {
+        height:500px
+    }
+
+    .ad-button {
+        width: 167px;
+    }
+}
+
+/*
+
     Mobile Menu
 
 */
@@ -421,6 +491,9 @@
     transform: translateY(0);
 }
 
+/*.margin-hack {
+    *margin-top: expression(this.offsetHeight < this.parentNode.offsetHeight ? parseInt((this.parentNode.offsetHeight - this.offsetHeight) / 2) + "px" : "0");
+}*/
 
 /* 
 
