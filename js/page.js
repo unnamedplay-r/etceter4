@@ -2,10 +2,11 @@
 
 /**
  * @global {String} currentPage - string containing the element tag of the page you're on 
- * @global {Boolean} pageIsLoading - is true if an animation loading a section is in progress 
+ * @global {String} adIsLoaded - tells us whether or not the ad has been loaded
  */
 
 var currentPage = {};
+var adIsLoaded = false;
 
 /** 
  * Page Object
@@ -30,12 +31,12 @@ function Page ( _p ) {
     
     // page state
     this.trace = "";
-    this.isVisible = false
-    this.isInitialized = false
-    this.isInitializing = false
-    this.isLoaded = false
-    this.isLoading = false
-    this.hasAllData = false
+    this.isVisible = false;
+    this.isInitialized = false;
+    this.isInitializing = false;
+    this.isLoaded = false;
+    this.isLoading = false;
+    this.hasAllData = false;
 
     // page handlers
     this.initialize = _p.initialize || function () {};

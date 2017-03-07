@@ -52,16 +52,16 @@ pages.sound = new Page ({
 pages.stills = new Page ({
     "id": _pID.stills,
     "tier": 4,
-    "upLinks": ["#vision"],
+    "upLinks": [_pID.vision],
     "initialize": function () {
-        replacePlaceholders(this.id);      
+        replacePlaceholders(this.id);    
     }
 });
 
 pages.diary = new Page ({
     "id": _pID.diary,
     "tier": 4,
-    "upLinks": ["#words"],
+    "upLinks": [_pID.words],
     "initialize": function () {
         replacePlaceholders(this.id);
     }
@@ -83,16 +83,16 @@ pages = [pages.menu, pages.sound, pages.stills, pages.diary, pages.info, new Pag
 }), new Page ({
     "id": _pID.words,
     "tier": 3,
-    "downLinks": ["#diary", "#blog"],
-    "upLinks": ["#menu"],
+    "downLinks": [_pID.diary, _pID.blog],
+    "upLinks": [_pID.menu],
 }), new Page ({
     "id": _pID.blog,
     "tier": 4,
-    "upLinks": ["#words"],
+    "upLinks": [_pID.words],
 }), new Page ({
     "id": _pID.video,
     "tier": 4,
-    "upLinks": ["#sight"],
+    "upLinks": [_pID.vision],
 })]
 
 // taken from here: https://api.jquery.com/jquery.getscript/
