@@ -260,18 +260,18 @@
 }
 
 ._enterButton {
-    background-color: black;
+    background-color: yellow;
     height: 24px; 
     width: 24px;
     border-radius: 60px;
     transition: 2s;
-    border: 1px black;
+    border: 1px yellow;
 }
 
 ._enterButton:visited,
 ._enterButton:active,
 ._enterButton:focus {
-    background-color: black;
+    background-color: yellow;
 }
 
 ._enterButton:hover {
@@ -289,8 +289,8 @@
     transform-origin: center;
     width: 36px;                
     height: 36px;                
-    border-radius: 60px;
-    border: 1px solid black;
+    border-radius: 80px;
+    border: 1px solid yellow;
     animation-delay: 0.5s;
 }
 ._enterButton:before {
