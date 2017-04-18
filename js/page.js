@@ -220,6 +220,17 @@ $("#toDiaryPage").on("click", function() { showNewSection("#diary"); });
 $("#toBlogPage").on("click", function() { showNewSection("#blog"); });
 $("#toLoopPage").on("click", function() { showNewSection("#loop"); });
 
+$("#SoundBackButton").on("click", function() { showNewSection("#menu"); });
+$("#WordBackButton").on("click", function() { showNewSection("#menu"); });
+$("#VisionBackButton").on("click", function() { showNewSection("#menu"); });
+$("#InfoBackButton").on("click", function() { showNewSection("#menu"); });
+
+$("#VideoBackButton").on("click", function() { showNewSection("#vision"); });
+$("#VideoBackButton2").on("click", function() { showNewSection("#vision"); });
+$("#VideoBackButton3").on("click", function() { showNewSection("#vision"); });
+$("#VideoBackButton4").on("click", function() { showNewSection("#vision"); });
+$("#VideoBackButton5").on("click", function() { showNewSection("#vision"); });
+
 /* 
  * Mobile Menu Button 
  */

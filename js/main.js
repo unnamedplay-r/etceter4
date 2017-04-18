@@ -26,7 +26,9 @@ $(document).ready(function () {
         $("#landing").removeClass("dn");
         currentPage = Page.findPage("#landing");
     }
+    
 });
+
 
 /**
  * Array.some() polyfill

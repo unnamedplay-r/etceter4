@@ -145,6 +145,8 @@
 .f-2_0625rem { font-size: 2.0625rem;} /* 33px */
 .f-2_125rem  { font-size: 2.125rem; } /* 34px */
 .f-2_250rem  { font-size: 2.250rem; } /* 36px */
+.f-4_00rem  { font-size: 4.00rem; } 
+.f-10_00rem  { font-size: 10.00rem; } 
 
 @media screen and (min-width: 46.875em) {
     .f-1_125rem-ns  { font-size: 1.125rem; } /* 18px */
@@ -152,6 +154,8 @@
     .f-2_0625rem-ns { font-size: 2.0625rem;} /* 33px */
     .f-2_125rem-ns  { font-size: 2.125rem; } /* 34px */
     .f-2_250rem-ns  { font-size: 2.250rem; } /* 36px */
+    .f-4_00rem-ns  { font-size: 4.00rem; } 
+    .f-10_00rem-ns  { font-size: 10.00rem; } 
 }
 
 /* 
@@ -256,18 +260,18 @@
 }
 
 ._enterButton {
-    background-color: white;
+    background-color: black;
     height: 24px; 
     width: 24px;
     border-radius: 60px;
     transition: 2s;
-    border: 1px white;
+    border: 1px black;
 }
 
 ._enterButton:visited,
 ._enterButton:active,
 ._enterButton:focus {
-    background-color: white;
+    background-color: black;
 }
 
 ._enterButton:hover {
@@ -286,7 +290,7 @@
     width: 36px;                
     height: 36px;                
     border-radius: 60px;
-    border: 1px solid white;
+    border: 1px solid black;
     animation-delay: 0.5s;
 }
 ._enterButton:before {
@@ -594,7 +598,7 @@ i.social-icon svg:hover {
     border-radius: none;
     border: none;
     cursor: pointer;
-    background: black;
+    background:white;
     transition: background 0.3s;
 }
 
@@ -609,7 +613,7 @@ i.social-icon svg:hover {
     left: 0rem; /* left & right determine padding from the left & right sides of the container */
     right: 0rem;
     height: 2px; /* thickness of the line */
-    background: white; /* color of the lines */
+    background: black; /* color of the lines */
 }
 
 
@@ -621,7 +625,7 @@ i.social-icon svg:hover {
     left: 0;
     width: 100%; /* makes the lines the width of the span element*/
     height: 2px; /* thickness of the lines */
-    background-color: #fff;
+    background-color: black;
     content: "";
 }
 

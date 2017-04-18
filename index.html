@@ -34,18 +34,29 @@
     <main id="pages" class="min-vh-100">
         
         <!-- Landing Page  -->
-        <section id="landing" class="dn vh-100 w-100 pb-6rem bg-black white">
+        <section id="landing" class="dn vh-100 w-100 pb-6rem bg-white white">
             <!-- <h1 class="dn"> Landing Page </h1>  Used for HTML5 Outline  -->
-            <section class="flex items-center h-100 w-100">
-                <div class="center tc">
-                    <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
-                    <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
-                    <h1 class="mt0 f1 f-headline-ns normal">ET CETER4</h1>
-                    <div class="h-100 w-100">
+            <section id="landingPageCanvasWrapper" class="fixed vh-100 w-100 pb-6rem z-n1"></section>
+            <section class="flex items-center vh-100 w-100 pb-6rem">
+                <div class="flex flex-column justify-between center tc ba bg-black bw1 b--black pa4">
+
+                        <div class="flex flex-column justify-between tc ba bg-white pa2">
                         <a href="#menu" id="toMenuPage" class="_enterButton dib relative">  </a>
                     </div>
+                    
+                    <h1 class="mt0 mb0 f1 f-headline-ns normal link cyan-link">ET CETER4</h1>
+                    <h1 class="mt0 mb0 f1 f-headline-ns normal link magenta-link">ET CETER4</h1>
+                    <h1 class="mt0 mb0 f1 f-headline-ns normal">ET CETER4</h1>
+                  
+                      <div class="flex flex-column justify-between fr tc ba bg-white bw1">
+                        <a href="#menu" id="toMenuPage" class="_enterButton dib relative">  </a>
+                    </div>
+                
                 </div>
+                  
             </section>
+
+         
         </section>
 
         <!-- Main Menu -->
@@ -53,8 +64,8 @@
             <section id="menuPageCanvasWrapper" class="fixed vh-100 w-100 pb-6rem z-n1"></section>
             <section id="menuPageWrapper" class="flex items-center vh-100 w-100 pb-6rem">
                 <section id="menuPageMenu" class="flex flex-column justify-between center tc ba bg-white-50 bw1 b--black pa4">
-                        <div class="tji tji-fix"><a href="#sound" id="toSoundPage" class="db f2 link cyan-link">S O U N D</a></div>
-                        <div class="tji tji-fix"><a href="#words" id="toWordsPage" class="db f2 link tji tji-fix black-link">W O R D S</a></div>
+                        <div class="tji tji-fix"><a href="#sound" id="toSoundPage" class="db f2 link black-link">S O U N D</a></div>
+                        <div class="tji tji-fix"><a href="#words" id="toWordsPage" class="db f2 link tji tji-fix cyan-link">W O R D S</a></div>
                         <div class="tji tji-fix"><a href="#vision" id="toVisionPage" class="db f2 link tji tji-fix magenta-link">V I S I O N</a></div>
                         <div class="tji tji-fix"><a href="#info" id="toInfoPage" class="db f2 link tji tji-fix yellow-link">I N F O</a></div>
                 </section>
@@ -64,25 +75,35 @@
         <!-- Menu // Words -->
         <section id="words" class="dn vh-100 w-100 pb-6rem black">
             <section id="wordsContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
-                <div id="wordsOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
-                    <div id="wordsInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
+                <div id="wordsOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-blue overflow-hidden center">
+                    <div id="wordsInnerContainer" class="h-100 flex flex-column items-center justify-around bg-blue ba bw1 b--white">
                         <div><a href="#diary" id="toDiaryPage" class="f3 f-2_250rem-ns link white-link">DIARY</a></div>
-                        <div><a href="#blog" id="toBlogPage" class="f3 f-2_250rem-ns link cyan-link">BLOG</a></div>
+                        <div><a href="#blog" id="toBlogPage" class="f3 f-2_250rem-ns link black-link">BLOG</a></div>
                         <div><a href="http://met4morphoses.com" target="_blank" class="f3 f-2_250rem-ns link magenta-link">MET4MORPHOSES</a></div>
                         <div><a href="loophole.html" target="_blank" class="f3 f-2_250rem-ns link yellow-link">LOOPHOLE</a></div>
+
+                                        <!-- Back Button -->
+                        <section id="WordBackButtonContainer" class="WordBackButtonContainer mw2 tc">
+                        <a id="WordBackButton" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                     </div>
                 </div>
             </section>
         </section>
 
         <!-- Menu // Sight -->
-        <section id="vision" class="dn vh-100 w-100 pb-6rem black">
+        <section id="vision" class="dn vh-100 w-100 pb-6rem magenta">
             <section id="visionContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
-                <div id="visionOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
-                    <div id="visionInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
+                <div id="visionOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-pink overflow-hidden center">
+                    <div id="visionInnerContainer" class="h-100 flex flex-column items-center justify-around bg-pink ba bw1 b--white">
                         <div><a href="#video" id="toVideoPage" class="f3 f-2_250rem-ns link white-link">VIDEO</a></div>
-                        <div><a href="#ogod" id="toOGOD" class="f3 f-2_250rem-ns link cyan-link">OGOD</a></div>
-                        <div><a href="#stills" id="toStillsPage" class="f3 f-2_250rem-ns link magenta-link">STILL</a></div>
+                        <div><a href="ogod.html" id="toOGOD" class="f3 f-2_250rem-ns link cyan-link">OGOD</a></div>
+                        <div><a href="#stills" id="toStillsPage" class="f3 f-2_250rem-ns link black-link">STILL</a></div>
+
+                                       <!-- Back Button -->
+                        <section id="VisionBackButtonContainer" class="VisionBackButtonContainer mw2 tc">
+                        <a id="VisionBackButton" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                     </div>
                 </div>
             </section>
@@ -97,7 +118,7 @@
                     </div>
                     <div id="textContainer" class="pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">OGOD // 2015</p>
-                        <a href="#ogod" id="toOGOD" class="red-link link">WATCH THE VISUAL ALBUM</a>
+                        <a href="ogod.html" id="toOGOD" class="red-link link">WATCH THE VISUAL ALBUM</a>
                     </div>
                 </section>
 
@@ -127,7 +148,15 @@
                         <p class="mt3 mb1">ETCETERA // 2011</p>
                     </div>
                 </section>
+
+
+                                  <!-- Back Button -->
+                        <section id="SoundBackButtonContainer" class="SoundBackButtonContainer mw2 tc">
+                        <a id="SoundBackButton" href="#" class="black-link items-center f-10_00rem link">&#8629;</a>
+                        </section>
+ 
             </section>
+         
         </section>
 
         <!-- Video -->
@@ -141,7 +170,13 @@
                     <div class="_line-modal pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">DAVID BOWIE - THURSDAY’S CHILD <br class="dn-ns">(ET CETER4 RMX) // FEB 2016</p>
                     </div>
+                       <!-- Back Button -->
+                        <section id="VideoBackButtonContainer" class="VideoBackButtonContainer mw2 tc">
+                        <a id="VideoBackButton" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                 </section>
+
+                      
 
                 <section class="w-90 w-80-ns shadedow ma4-ns mt4">
                     <div class="youtubeContainer">
@@ -150,7 +185,13 @@
                     <div class="_line-modal pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">ET CETER4 - OGOD I : XXIX</p>
                     </div>
+                       <!-- Back Button -->
+                        <section id="VideoBackButtonContainer2" class="VideoBackButtonContainer2 mw2 tc">
+                        <a id="VideoBackButton2" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                 </section>
+
+               
 
                 <section class="w-90 w-80-ns shadedow ma4-ns mt4">
                     <div class="youtubeContainer">
@@ -159,7 +200,12 @@
                     <div class="_line-modal pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">ET CETER4 LIVE <br class="dn-ns">@ ELECTRONICA 1.3</p>
                     </div>
+                          <!-- Back Button -->
+                        <section id="VideoBackButtonContainer3" class="VideoBackButtonContainer3 mw2 tc">
+                        <a id="VideoBackButton3" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                 </section>
+
 
                 <section class="w-90 w-80-ns shadedow ma4-ns mt4">
                     <div class="youtubeContainer">
@@ -168,7 +214,13 @@
                     <div class="_line-modal pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">ET CETER4 - FASTER</p>
                     </div>
+                                      <!-- Back Button -->
+                        <section id="VideoBackButtonContainer4" class="VideoBackButtonContainer4 mw2 tc">
+                        <a id="VideoBackButton4" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                 </section>
+
+
 
                 <section class="w-90 w-80-ns shadedow ma4-ns mt4 mb4">
                     <div class="youtubeContainer">
@@ -177,7 +229,13 @@
                     <div class="_line-modal pt4 h-6_250rem tc relative">
                         <p class="mt1 mb1">ET CETER4 - SLIP</p>
                     </div>
+                                      <!-- Back Button -->
+                        <section id="VideoBackButtonContainer5" class="VideoBackButtonContainer5 mw2 tc">
+                        <a id="VideoBackButton5" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                 </section>
+
+
                 
             </section>
         </section>
@@ -205,7 +263,7 @@
                 </section>
 
                 <button id="stills-left" class="dib absolute-ns w-20-ns h-100-ns pb6-ns pr-calc-ns left-0 top-0 f4-ns futura clear-button txtshdw-white bg-transparent b--none pointer 0-50 fadeIn"><</button>
-                <p id="stills-indicator" class="dib mt0 mb0">1/83</p>
+                <!--<p id="stills-indicator" class="dib mt0 mb0">1/83</p>-->
                 <button id="stills-right" class="dib absolute-ns w-20-ns h-100-ns pb6-ns pl-calc-ns top-0 right-0 f4-ns futura clear-button txtshdw-white bg-transparent b--none pointer o-50 fadeIn">></button>
             </div>
         </section>
@@ -308,12 +366,16 @@
           <!-- Info -->
         <section id="info" class="dn vh-100 w-100 pb-6rem black">
             <section id="infoContainer" class="flex-ns items-center vh-100 w-100 pb-6rem">
-                <div id="infoOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-black overflow-hidden center">
-                    <div id="infoInnerContainer" class="h-100 flex flex-column items-center justify-around bg-black ba bw1 b--white">
+                <div id="infoOuterContainer" class="h-100 h-30rem-ns w-70-ns mw7-ns pa2 bg-yellow overflow-hidden center">
+                    <div id="infoInnerContainer" class="h-100 flex flex-column items-center justify-around bg-yellow ba bw1 b--white">
                         <div><a href="" id="" class="f3 f-2_250rem-ns link white-link">...SOUND // W O R D S // VISION</a></div>
                         <div><a href="" id="" class="f3 f-2_250rem-ns link cyan-link">...EVER TURNING EVERY STONE</a></div>
                         <div><a href="" class="f3 f-2_250rem-ns link magenta-link">...CONSTANT EVOLVING COLLECTIVE</a></div>
-                        <div><a href="http://www.et4l.com/" target="_blank" class="f3 f-2_250rem-ns link yellow-link">...FRACTION //  E T   4 L</a></div>
+                        <div><a href="http://www.et4l.com/" target="_blank" class="f3 f-2_250rem-ns link black-link">...FRACTION //  E T   4 L</a></div>
+                                 <!-- Back Button -->
+                        <section id="InfoBackButtonContainer" class="InfoBackButtonContainer mw2 tc">
+                        <a id="InfoBackButton" href="#" class="black-link items-center f-2_250rem-ns link">&#8629;</a>
+                        </section>
                     </div>
                 </div>
             </section>
@@ -324,7 +386,7 @@
     </main>
 
     <!-- Ad -->
-    <section id="ad" class="hide-top h-100 w-100 pb-6rem tc bg-hot-pink white overflow-y-auto">
+    <section id="ad" class=" hide-top h-100 w-100 pb-6rem tc bg-hot-pink white overflow-y-auto">
         <section class="ad-container ad-container-ns center bg-white h-100 w-100 absolute left-0 right-0 bottom-0 mw-60 h-60"> <!-- Main Container -->
             <section class="bg-white fl-ns ad-img-container w-50-ns"> <!-- Image -->
                 <img src="img/ogod.png" alt="" class="ad-img ad-img-ns w-100">
@@ -354,13 +416,15 @@
             <span class="_etcDashedLine">/////////////////////</span>
         </div>
         <ul class="list pl0 mt4 mb0 f-1_250rem">
-            <li class="mb3"><a class="link white-link">SUPPORT US</a></li>
-            <li class="mb3"><a class="link white-link">SITE MAP</a></li>
-            <li class="mb3"><a class="link white-link">MAILING LIST</a></li>
-            <li class="mb3"><a class="link white-link">FACEBOOK</a></li>
-            <li class="mb3"><a class="link white-link">TWITTER</a></li>
-            <li class="mb3"><a class="link white-link">INSTAGRAM</a></li>
-            <li><a class="link white-link">YOUTUBE</a></li>
+            <li class="mb3"><a href="https://etceter4.bandcamp.com" target="_blank" class="link white-link">SUPPORT US</a></li>
+            <li class="mb3"><a href="sitemap.html" target="_blank" class="link white-link">SITE MAP</a></li>
+            <li class="mb3"><a href="http://eepurl.com/bPQueX" target="_blank" class="link white-link">MAILING LIST</a></li>
+            <li class="mb3"><a href="http://www.facebook.com/etceter4" target="_blank" class="link white-link">FACEBOOK</a></li>
+            <li class="mb3"><a href="https://twitter.com/et_ceter4" target="_blank" class="link white-link">TWITTER</a></li>
+            <li class="mb3"><a href="https://www.instagram.com/et_ceter4/" target="_blank" class="link white-link">INSTAGRAM</a></li>
+            <li class="mb3"><a href="https://www.youtube.com/user/etceter4" target="_blank" class="link white-link">YOUTUBE</a></li> <br>
+            <li class="mb3"><a id="BackButton" href="#menu" target="_blank" class="link white-link">&#8629;</a></li>
+                
         </ul>
     </section>
     
@@ -368,35 +432,32 @@
     <img id="imageStorage" class="dn" src="" alt="Storage For Canvases!"/>
 
     <!-- Footer -->
-    <footer class="fixed bottom-0 bg-black w-100 pa3">
+    <footer id="footer" class="fixed bottom-0 bg-white w-100 pa3">
         <nav class="flex flex-row flex-wrap justify-around items-center page-wrap center h-100">
-            <!-- Back Button -->
-            <section id="backButtonContainer" class="backButtonContainer mw2 tc">
-                <a id="backButton" href="#" class="white-link f-2_0625rem link">&#8629;</a>
-            </section>
+
 
             <!-- Audio Player -->
             <section id="audioPlayer" class="audioPlayer">
                 <iframe style="border: 0; width: 100%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=3780915385/size=small/bgcol=ffffff/linkcol=333333/artwork=none/transparent=true/"><a href="http://music.etceter4.com/album/ogod">OGOD by ET CETER4</a></iframe>
             </section>
 
-            <section id="mobileHamburger" class="dn-ns">
+            <section id="mobileHamburger" class="">
                 <button class="c-hamburger c-hamburger--htx">
                     <span>toggle menu</span>
                 </button>
             </section>
 
             <!-- Support Us / Site Map / Mailing List -->
-            <section id="subscribe" class="dn flex-ns flex-row flex-wrap justify-around items-center min-w-15rem mw6 w-34 h-100 f-1_125rem white">
+            <!--<section id="subscribe" class="dn flex-ns flex-row flex-wrap justify-around items-center min-w-15rem mw6 w-34 h-100 f-1_125rem white">
                 <a class="link white-link" href="https://etceter4.bandcamp.com" target="_blank">SUPPORT US</a>
                 <p class="ma0 di">//</p>
                 <a id="mapToMapButton" class="link white-link" href="sitemap.html" target="_self">SITE MAP</a>
                 <p class="ma0 di">//</p>
                 <a class="link white-link" href="http://eepurl.com/bPQueX" target="_blank">MAILING LIST</a>
-            </section>
+            </section>-->
 
             <!-- Social Sharing -->
-            <section id="socialRow" class="dn db-ns w-15">
+            <!--<section id="socialRow" class="dn db-ns w-15">
                 <a class="social-link" href="http://www.facebook.com/etceter4" target="_blank">
                     <i class="social-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="98" height="98" viewBox="0 0 97.8 97.8">
                                     <path d="M48.9 0C21.9 0 0 21.9 0 48.9S21.9 97.8 48.9 97.8 97.8 75.9 97.8 48.9 75.9 0 48.9 0zM67.5 24.9l-6.8 0c-5.3 0-6.3 2.5-6.3 6.2v8.2h12.6L67.1 52H54.4v32.8H41.3V52H30.2V39.3h11v-9.4c0-10.9 6.7-16.9 16.4-16.9l9.9 0V24.9L67.5 24.9z"/></svg></i></a>
@@ -416,7 +477,7 @@
                     <i class="social-icon"> <svg xmlns="http://www.w3.org/2000/svg" width="98" height="98" viewBox="0 0 97.75 97.75">
                                     <path d="M61.52 45.424c-6.555-3.492-13.097-7.008-19.667-10.468 -3.166-1.667-5.914 0.025-5.941 3.612 -0.027 3.492-0.006 6.985-0.006 10.479 0 3.537 0.012 7.074-0.005 10.61 -0.007 1.229 0.362 2.26 1.38 3 1.355 0.985 2.719 1.018 4.219 0.228 6.609-3.482 13.24-6.924 19.874-10.361 1.458-0.756 2.562-1.707 2.616-3.508C64.044 47.194 62.966 46.194 61.52 45.424z"/>
                                     <path d="M48.875 0C21.883 0 0 21.882 0 48.875S21.883 97.75 48.875 97.75 97.75 75.868 97.75 48.875 75.867 0 48.875 0zM82.833 66.998c0 8.746-7.089 15.835-15.836 15.835H30.753c-8.746 0-15.836-7.09-15.836-15.835V30.752c0-8.746 7.09-15.835 15.836-15.835h36.244c8.747 0 15.836 7.09 15.836 15.835V66.998z"/></svg></i></a>
-            </section>
+            </section>-->
         </nav>
     </footer>
 
