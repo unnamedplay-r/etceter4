@@ -65,12 +65,12 @@ $('#menu #toInfoPage').mouseenter( function() {
     
     if (!myp5) {
         myp5 = new p5( infoCanvas, 'menuPageCanvasWrapper' );
-        myp5.id = 'info';
-    } else if (myp5.id !== 'info') {
+        myp5.id = 'words';
+    } else if (myp5.id !== 'words') {
         myp5.remove();
         myp5 = undefined;
         myp5 = new p5( infoCanvas, 'menuPageCanvasWrapper' );
-        myp5.id = 'info';
+        myp5.id = 'words';
     }
 });
 
@@ -189,7 +189,7 @@ var soundCanvas = function ( p ) {
      */
 
     p.draw = function () {
-        p.background(255);
+        p.background(255, 0, 0);
         for (var i = 0; i < noisesTotal; i++) {
             var currentNoise = noises[i];
             var prevNoise = noises[i-1]
@@ -336,7 +336,7 @@ var wordsCanvas = function( p ) {
      */
 
     p.draw = function () {
-        p.background(255);
+        p.background(100, 255, 0);
         p.translate(center.x, center.y);
 
         for (var i = 0; i < wordTotal; i++) {
@@ -487,11 +487,16 @@ var visionCanvas = function ( p ) {
      * 
      */ 
 
+
+
     p.draw = function () {
+
         
         p.rect(0,0,1,1); // this acts as a reset for some reason
         p.drawingContext.globalCompositeOperation="source-over";
-        // pg.background(0); // for some reason, this works too
+        // pg.background(255, 0, 0); // for some reason, this works too
+            // p.background(255);
+                    
         
         // draw in all slices
         for (var i = 0; i < totalSlices; i++) { 
@@ -521,15 +526,15 @@ var infoCanvas = function ( p ) {
 
     var forces = {};
     var lines = [];
-    var maxLines = 60;
+    var maxLines = 50;
     var lineLengthBounds = p.createVector(0,0);
 
     function Line () {
         this.location = p.createVector(p.random(0, p.windowWidth), p.random(0, p.windowHeight));
         this.startEnd = p.createVector(0,0);
-        this.dimensions = p.createVector(1,1);
-        this.color = p.color(0);
-        this.velocity = p.createVector(2,0);
+        this.dimensions = p.createVector(100,50);
+        this.color = p.color(255);
+        this.velocity = p.createVector(0.01,0);
         this.acceleration = p.createVector(0,0);
         this.angle = 0;
     }
@@ -576,7 +581,7 @@ var infoCanvas = function ( p ) {
     p.setup = function () {
         p.createCanvas(p.windowWidth, p.windowHeight);
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < 20; i++) {
             lines.push( new Line() );
         }
 
@@ -589,7 +594,7 @@ var infoCanvas = function ( p ) {
      */ 
 
     p.draw = function () {
-        p.background(p.color('rgba(255, 255, 255, 0.01)'));
+        p.background(p.color('rgba(0, 0, 255, 1.00)'));
 
         for ( var i = 0; i < lines.length; i++ ) {
             lines[i].update();

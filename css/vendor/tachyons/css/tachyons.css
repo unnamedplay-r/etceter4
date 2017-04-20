@@ -375,6 +375,10 @@ img { max-width: 100%; }
 .b--black-05 { border-color: rgba( 0, 0, 0, .05 ); }
 .b--black-025 { border-color: rgba( 0, 0, 0, .025 ); }
 .b--black-0125 { border-color: rgba( 0, 0, 0, .0125 ); }
+
+.b--light-blue-50 { border-color: rgba( 0, 0, 255, .5 ); }
+
+
 .b--dark-red { border-color: #e7040f; }
 .b--red { border-color: #ff4136; }
 .b--light-red { border-color: #ff725c; }
@@ -1125,6 +1129,7 @@ code, .code { font-family: Consolas, monaco, monospace; }
 .bg-white-30 { background-color: rgba( 255, 255, 255, .3 ); }
 .bg-white-20 { background-color: rgba( 255, 255, 255, .2 ); }
 .bg-white-10 { background-color: rgba( 255, 255, 255, .1 ); }
+
 /* Background colors */
 .bg-black { background-color: #000; }
 .bg-near-black { background-color: #111; }

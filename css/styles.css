@@ -260,22 +260,22 @@
 }
 
 ._enterButton {
-    background-color: yellow;
+    background-color:black;
     height: 24px; 
     width: 24px;
     border-radius: 60px;
     transition: 2s;
-    border: 1px yellow;
+    border: 1px black;
 }
 
 ._enterButton:visited,
 ._enterButton:active,
 ._enterButton:focus {
-    background-color: yellow;
+    background-color: black;
 }
 
 ._enterButton:hover {
-    background-color: cyan;
+    background-color:black;
     transform: scale(1,1);
 }
 
@@ -290,7 +290,7 @@
     width: 36px;                
     height: 36px;                
     border-radius: 80px;
-    border: 1px solid yellow;
+    border: 1px solid red;
     animation-delay: 0.5s;
 }
 ._enterButton:before {
@@ -535,19 +535,19 @@ footer {
 }
 
 .audioPlayer {
-    max-width: 22rem;
-    min-width: 13rem;
-    width: 29%;
+    /*max-width: 22rem;
+    min-width: 13rem;*/
+    width: auto;
 }
 
-.social-link {
+/*.social-link {
     width: 30px;
     height: 30px;
 }
 
 .social-link:hover {
     background-color: transparent; /* resets the hover */
-}
+}*/
 
 
 /* 
@@ -598,7 +598,7 @@ i.social-icon svg:hover {
     border-radius: none;
     border: none;
     cursor: pointer;
-    background:white;
+    background: transparent;
     transition: background 0.3s;
 }
 
@@ -612,7 +612,7 @@ i.social-icon svg:hover {
     top: 20px; /* distance to the center of the container */
     left: 0rem; /* left & right determine padding from the left & right sides of the container */
     right: 0rem;
-    height: 2px; /* thickness of the line */
+    height: 3px; /* thickness of the line */
     background: black; /* color of the lines */
 }
 
@@ -624,7 +624,7 @@ i.social-icon svg:hover {
     display: block;
     left: 0;
     width: 100%; /* makes the lines the width of the span element*/
-    height: 2px; /* thickness of the lines */
+    height: 3px; /* thickness of the lines */
     background-color: black;
     content: "";
 }
