@@ -139,8 +139,8 @@ function fadeInPage (_Page, _cb) {
 
         // fade in next section
         $(_Page.id).velocity("fadeIn", {
-            delay: 70,
-            duration: 500, // 500
+            delay: 0,
+            duration: 0, // 500
             display: _display,
             easing: "easeInSine",
             begin: function () {
@@ -173,7 +173,7 @@ function fadeOutPage ( _Page, _cb) {
         // make sure it's not fading out a hidden or non existant element
         if ( displayOfPage !== undefined && displayOfPage !== "none") {
             $(_Page.id).velocity("fadeOut", {
-                delay: 60,
+                delay: 1000,
                 duration: 200, // 200-300
                 easing: "ease-out",
                 begin: function () {

@@ -564,7 +564,7 @@ footer {
 i.social-icon svg {
     width: 30px;
     height: 30px;
-    fill: white;
+    fill: black;
 }
 
 i.social-icon svg:hover {
@@ -598,7 +598,7 @@ i.social-icon svg:hover {
     border-radius: none;
     border: none;
     cursor: pointer;
-    background: transparent;
+    background: white;
     transition: background 0.3s;
 }
 

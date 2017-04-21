@@ -336,7 +336,8 @@ var wordsCanvas = function( p ) {
      */
 
     p.draw = function () {
-        p.background(100, 255, 0);
+        p.background(0.01);
+        p.background(255, 255, 0);
         p.translate(center.x, center.y);
 
         for (var i = 0; i < wordTotal; i++) {
@@ -365,8 +366,8 @@ var visionCanvas = function ( p ) {
     var heightOfCanvas = p.windowHeight - footerHeight;
     var imageSlices = [];
     var totalSlices = 20;
-    var sliceHeightBigRatio = heightOfCanvas * (1/8);
-    var sliceHeightSmallRatio = heightOfCanvas * (1/4);
+    var sliceHeightBigRatio = heightOfCanvas * (1/100);
+    var sliceHeightSmallRatio = heightOfCanvas * (1/1);
     var topSpeed = 20;
     var pg;
     var img;
@@ -387,15 +388,15 @@ var visionCanvas = function ( p ) {
         }
 
         // the graphics needed for the square 
-        var sliceWidth = 15;
+        var sliceWidth = 75;
         this.slice = p.createGraphics(sliceWidth, height);
-        this.slice.background(0,0,0,0);
-        this.slice.fill(0,0,0,0);
+        this.slice.background(255,244,255);
+        this.slice.fill(255,255,255);
         this.slice.rect(0, 0, this.slice.width, this.slice.height);
 
         this.reverse = false; // goes backwards
         this.acceleration = p.createVector(.03,0);
-        this.location = p.createVector(-sliceWidth + p.random(-1000,0), heightOffset); // start before the line
+        this.location = p.createVector(-sliceWidth + p.random(0,0), heightOffset); // start before the line
         this.velocity = p.createVector(p.random(0.01,10), 0);
         this.time = p.createVector(p.random(-10,10), p.random(-10,10));
     }
@@ -495,7 +496,7 @@ var visionCanvas = function ( p ) {
         p.rect(0,0,1,1); // this acts as a reset for some reason
         p.drawingContext.globalCompositeOperation="source-over";
         // pg.background(255, 0, 0); // for some reason, this works too
-            // p.background(255);
+            p.background(255);
                     
         
         // draw in all slices

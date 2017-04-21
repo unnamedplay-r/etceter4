@@ -16,3 +16,16 @@ function randomlinks() {
     links[11] = "labyrinth/072716.html"
     window.location = links[myrandom]
 }
+
+
+
+var totalCount = 99;
+function ChangeIt() 
+{
+var num = Math.ceil( Math.random() * totalCount );
+document.body.background = 'bgimages/'+num+'.jpg';
+document.body.style.backgroundRepeat = "repeat";// Background repeat
+}
+
+
+ChangeIt();
