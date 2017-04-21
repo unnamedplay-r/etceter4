@@ -449,6 +449,12 @@
     width: 137px;
 }
 
+
+
+
+.mainsite-button {
+    width: 70%;
+}
 /* Not Small */
 @media screen and (min-width: 46.875em) {
     .ad-container-ns {

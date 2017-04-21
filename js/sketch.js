@@ -390,9 +390,9 @@ var visionCanvas = function ( p ) {
         // the graphics needed for the square 
         var sliceWidth = 75;
         this.slice = p.createGraphics(sliceWidth, height);
-        this.slice.background(255,244,255);
+        this.slice.background(0,0,0,0);
         this.slice.fill(255,255,255);
-        this.slice.rect(0, 0, this.slice.width, this.slice.height);
+        this.slice.rect(255, 0, this.slice.width, this.slice.height);
 
         this.reverse = false; // goes backwards
         this.acceleration = p.createVector(.03,0);
@@ -496,7 +496,7 @@ var visionCanvas = function ( p ) {
         p.rect(0,0,1,1); // this acts as a reset for some reason
         p.drawingContext.globalCompositeOperation="source-over";
         // pg.background(255, 0, 0); // for some reason, this works too
-            p.background(255);
+            // p.background(255);
                     
         
         // draw in all slices
