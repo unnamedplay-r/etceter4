@@ -26,7 +26,7 @@ pages.menu = new Page ({
     "initialize": function () {
         // get the lib and sketch
         $.cachedScript( "js/vendor/p5.js" ).done(function( script, textStatus ) {});
-        $.cachedScript( "js/sketch.js" ).done(function( script, textStatus ) {});
+        // $.cachedScript( "js/sketch.js" ).done(function( script, textStatus ) {});
     }
 });
 

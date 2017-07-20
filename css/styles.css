@@ -194,6 +194,21 @@
 .red-link:hover       { color: red; background-color: red;       text-decoration: line-through; }
 .red-link:active      { color: red; background-color: transparent; text-decoration: line-through; }
 
+.pink-link:link        { color: pink; background-color: transparent; }
+.pink-link:visited     { color: pink; background-color: transparent; text-decoration: none; }
+.pink-link:hover       { color: pink; background-color: pink;       text-decoration: line-through; }
+.pink-link:active      { color: pink; background-color: transparent; text-decoration: line-through; }
+
+.blue-link:link        { color: blue; background-color: transparent; }
+.blue-link:visited     { color: blue; background-color: transparent; text-decoration: none; }
+.blue-link:hover       { color: blue; background-color: blue;       text-decoration: line-through; }
+.blue-link:active      { color: blue; background-color: transparent; text-decoration: line-through; }
+
+.green-link:link        { color: green; background-color: transparent; }
+.green-link:visited     { color: green; background-color: transparent; text-decoration: none; }
+.green-link:hover       { color: green; background-color: green;       text-decoration: line-through; }
+.green-link:active      { color: green; background-color: transparent; text-decoration: line-through; }
+
 
 .clear-button:focus { outline: none; }
 
@@ -541,9 +556,9 @@ footer {
 }
 
 .audioPlayer {
-    /*max-width: 22rem;
-    min-width: 13rem;*/
-    width: auto;
+    max-width: 22rem;
+    min-width: 13rem;
+    width: 29%;
 }
 
 /*.social-link {

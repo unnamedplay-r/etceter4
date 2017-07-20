@@ -74,14 +74,14 @@ $('#menu #toInfoPage').mouseenter( function() {
     }
 });
 
-// for vision canvas
-$(document).ready(function () {
-    // find the storage
-    visionImage = document.getElementById("imageStorage");
+// // for vision canvas
+// $(document).ready(function () {
+//     // find the storage
+//     visionImage = document.getElementById("imageStorage");
     
-    // load image for vision canvas & save it der
-    visionImage.src = 'img/photos/glitchpr0n/glitch26.png';
-});
+//     // load image for vision canvas & save it der
+//     visionImage.src = 'img/photos/glitchpr0n/glitch26.png';
+// });
 
 /*
  * 
@@ -189,7 +189,7 @@ var soundCanvas = function ( p ) {
      */
 
     p.draw = function () {
-        p.background(255, 0, 0);
+        p.background(255, 55, 100);
         for (var i = 0; i < noisesTotal; i++) {
             var currentNoise = noises[i];
             var prevNoise = noises[i-1]
@@ -209,11 +209,11 @@ var soundCanvas = function ( p ) {
         noisesTotal = Math.floor(noisesWidth * noisesHeight);
 
         // populate the noise
-        noises = [];
-        for (var i = 0; i < noisesTotal; i++) {
-            noises.push(new Noise());
-            noises[i].setLocation(noises[i-1]);
-        }
+        // noises = [];
+        // for (var i = 0; i < noisesTotal; i++) {
+        //     noises.push(new Noise());
+        //     noises[i].setLocation(noises[i-1]);
+        // }
     }
 }
 
@@ -232,7 +232,7 @@ var wordsCanvas = function( p ) {
     var bounds = p.createVector(700, 300);
     var textBounds = p.createVector(12,30);
     var rate = p.createVector(0.008, 0.008);
-    var bezierRate = 0.01;
+    var bezierRate = 1;
     var wordTotal = 30; 
     var wordCloud = [];
 
@@ -249,7 +249,11 @@ var wordsCanvas = function( p ) {
         'numbers',     'scene',         'return',
         'personality', 'stakeholder',   'budget',
         'pain',        'depression',    'hate',
-        'constant',    'repetition',    'space'
+        'constant',    'repetition',    'space',
+        'rape',        'kind',          'AIDS',
+        'minotaur',    'gone',          'end',
+        'trust',       'hope',          'joust',
+        'fist',        'bye',           'good',
     ];
 
     function Word ( text ) {
@@ -320,7 +324,7 @@ var wordsCanvas = function( p ) {
         p.createCanvas(p.windowWidth, p.windowHeight);
         
         // TODO: do some error checking to see if we have Bodoni MT & fallback to Garamond or Georgia
-        p.textFont("Bodoni MT");
+        p.textFont("Futura");
         
 
         // populate the word cloud
@@ -336,8 +340,8 @@ var wordsCanvas = function( p ) {
      */
 
     p.draw = function () {
-        p.background(0.01);
-        p.background(255, 255, 0);
+        p.background(1);
+        p.background(155, 155, 155,);
         p.translate(center.x, center.y);
 
         for (var i = 0; i < wordTotal; i++) {
@@ -365,10 +369,10 @@ var wordsCanvas = function( p ) {
 var visionCanvas = function ( p ) {
     var heightOfCanvas = p.windowHeight - footerHeight;
     var imageSlices = [];
-    var totalSlices = 20;
-    var sliceHeightBigRatio = heightOfCanvas * (1/100);
-    var sliceHeightSmallRatio = heightOfCanvas * (1/1);
-    var topSpeed = 20;
+    var totalSlices = 5;
+    var sliceHeightBigRatio = heightOfCanvas * (70/100);
+    var sliceHeightSmallRatio = heightOfCanvas * (0.2/1);
+    var topSpeed = 5;
     var pg;
     var img;
 
@@ -390,14 +394,14 @@ var visionCanvas = function ( p ) {
         // the graphics needed for the square 
         var sliceWidth = 75;
         this.slice = p.createGraphics(sliceWidth, height);
-        this.slice.background(0,0,0,0);
-        this.slice.fill(255,255,255);
-        this.slice.rect(255, 0, this.slice.width, this.slice.height);
+        this.slice.background(0,0,0);
+        this.slice.fill(0,0,0);
+        this.slice.rect(0, 0, this.slice.width, this.slice.height);
 
         this.reverse = false; // goes backwards
         this.acceleration = p.createVector(.03,0);
         this.location = p.createVector(-sliceWidth + p.random(0,0), heightOffset); // start before the line
-        this.velocity = p.createVector(p.random(0.01,10), 0);
+        this.velocity = p.createVector(p.random(1,10), 0);
         this.time = p.createVector(p.random(-10,10), p.random(-10,10));
     }
 
@@ -427,7 +431,7 @@ var visionCanvas = function ( p ) {
                  
                 // are you going right?
                 if (this.velocity.x > 0) {
-                    this.location.x = p.random(-1000,0); // cool, go back to the other side
+                    this.location.x = p.random(1000,0); // cool, go back to the other side
                 } 
                 
                 // are you going left? (coming out of a reverse)
@@ -452,7 +456,7 @@ var visionCanvas = function ( p ) {
         else {
             if (this.location.x > p.windowWidth) {
                 if (this.velocity.x > 0) {
-                    this.location.x = p.random(-1000,0) 
+                    this.location.x = p.random(0,0) 
                 }
             } else if (this.location.x < 0) { // left side
                 if (this.velocity.x <= 0) {
@@ -471,13 +475,14 @@ var visionCanvas = function ( p ) {
     p.preload = function () {}
 
     p.setup = function () {
+        // p.background(255,55,100);
         p.createCanvas(p.windowWidth, p.windowHeight);
-        img = p.loadImage(visionImage.src);
+        // img = p.loadImage(visionImage.src);
 
         // create the image slices
         for (var i = 0; i < totalSlices; i++) {
             imageSlices.push(new ImageSlice(p.random()));
-            imageSlices[i].location.sub(10,0);
+            imageSlices[i].location.sub(0,0);
         }
     }
 
@@ -492,11 +497,12 @@ var visionCanvas = function ( p ) {
 
     p.draw = function () {
 
-        
-        p.rect(0,0,1,1); // this acts as a reset for some reason
-        p.drawingContext.globalCompositeOperation="source-over";
+        p.background(120,255,10);  
+        p.rect(0,0,0,0); // this acts as a reset for some reason
+        p.drawingContext.globalCompositeOperation="difference";
         // pg.background(255, 0, 0); // for some reason, this works too
-            // p.background(255);
+
+ 
                     
         
         // draw in all slices
@@ -504,11 +510,11 @@ var visionCanvas = function ( p ) {
             var currentSlice = imageSlices[i];
             currentSlice.update();
             currentSlice.checkEdges();
-            currentSlice.slice.background(0);
+            currentSlice.slice.background(255);
             p.image(currentSlice.slice, currentSlice.location.x, currentSlice.location.y);
         }
-        p.drawingContext.globalCompositeOperation="source-in";
-        p.image(img, 0, 0); // IMAGE
+        p.drawingContext.globalCompositeOperation="overlay";
+        // p.image(img, 0, 0); // IMAGE
 
     }
 
@@ -532,12 +538,12 @@ var infoCanvas = function ( p ) {
 
     function Line () {
         this.location = p.createVector(p.random(0, p.windowWidth), p.random(0, p.windowHeight));
-        this.startEnd = p.createVector(0,0);
+        this.startEnd = p.createVector(0,-50);
         this.dimensions = p.createVector(100,50);
         this.color = p.color(255);
-        this.velocity = p.createVector(0.01,0);
-        this.acceleration = p.createVector(0,0);
-        this.angle = 0;
+        this.velocity = p.createVector(0.01,0.5);
+        this.acceleration = p.createVector(0,-5);
+        this.angle = -25;
     }
 
     Line.prototype.update = function () {
@@ -595,7 +601,7 @@ var infoCanvas = function ( p ) {
      */ 
 
     p.draw = function () {
-        p.background(p.color('rgba(0, 0, 255, 1.00)'));
+        p.background(p.color('rgba(50, 100, 205, 1.00)'));
 
         for ( var i = 0; i < lines.length; i++ ) {
             lines[i].update();

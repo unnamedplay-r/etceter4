@@ -210,7 +210,7 @@ $("#backButton").on("click", function () { showNewSection(currentPage.getBackEle
 $("#toLandingPage").on("click", function() { showNewSection("#landing"); });
 $("#toMenuPage").on("click", function() { showNewSection("#menu"); });
 $("#toWordsPage").on("click", function() { showNewSection("#words"); });
-$("#toSoundPage").on("click", function() { showNewSection("#sound"); });
+// $("#toSoundPage").on("click", function() { showNewSection("#sound"); });
 $("#toVisionPage").on("click", function() { showNewSection("#vision"); });
 $("#toInfoPage").on("click", function() { showNewSection("#info"); });
 $("#toVideoPage").on("click", function() { showNewSection("#video"); });
