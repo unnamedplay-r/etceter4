@@ -12,7 +12,7 @@
   "devDependencies": {
     "browser-sync": "^3.0.3",
     "eslint": "^9.14.0",
-    "@eslint/js": "^9.14.0",
+    "@eslint/js": "^9.39.1",
     "prettier": "^3.3.3"
   },
   "scripts": {
