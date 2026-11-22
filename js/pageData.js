@@ -16,7 +16,7 @@ const _pID = {
   info: '#info',
 };
 
-let pages = [];
+const pages = [];
 
 pages.menu = new Page({
   id: _pID.menu,
@@ -72,7 +72,12 @@ pages.info = new Page({
   upLinks: [_pID.menu],
 });
 
-pages = [
+// Fill the array in place instead of reassigning it: `pages` is read as a
+// global by js/page.js, js/images.js and js/diary.js, and @eslint/js 10
+// flags the reassignment as no-useless-assignment because it cannot see
+// those cross-file reads. The named properties above are only temporaries
+// used to build the array, so push() keeps the same element order.
+pages.push(
   pages.menu,
   pages.sound,
   pages.stills,
@@ -103,8 +108,8 @@ pages = [
     id: _pID.video,
     tier: 4,
     upLinks: [_pID.vision],
-  }),
-];
+  })
+);
 
 // taken from here: https://api.jquery.com/jquery.getscript/
 jQuery.cachedScript = function (url, options) {
