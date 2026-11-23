@@ -13,7 +13,7 @@
     "browser-sync": "^3.0.3",
     "eslint": "^10.15.0",
     "@eslint/js": "^10.0.1",
-    "prettier": "^3.8.1"
+    "prettier": "^3.10.1"
   },
   "scripts": {
     "dev": "browser-sync start --server --files '*.html, css/*.css, js/*.js' --port 3000",
